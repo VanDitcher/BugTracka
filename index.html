@@ -47,9 +47,60 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
+            <!-- Nav Item- Notifications Inbox -->
+            <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-bell"></i>
+                    <span>Notification Inbox</span></a>
+            </li>
+            <!-- Nav Item Projects-->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cogs"></i>
+                    <span>Projects</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Components:</h6>
+                        <a class="collapse-item" href="buttons.html">Buttons</a>
+                        <a class="collapse-item" href="cards.html">Cards</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item Tickets-->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-layer-group"></i>
+                    <span>Tickets</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Components:</h6>
+                        <a class="collapse-item" href="buttons.html">Buttons</a>
+                        <a class="collapse-item" href="cards.html">Cards</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item Admin-->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-user-shield"></i>
+                    <span>Admin</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Components:</h6>
+                        <a class="collapse-item" href="buttons.html">Buttons</a>
+                        <a class="collapse-item" href="cards.html">Cards</a>
+                    </div>
+                </div>
+            </li>
+            
+            
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
@@ -450,7 +501,7 @@
 
                     <div class="row">
                         <!-- Bug Tracker Stats Card -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="col-xl-3 col-md-6 mb-1">
                             <div class="card shadow mb-4">
                                 <!-- Card Body -->
                                 <div class="card-body" style="height: 250px;">
@@ -514,7 +565,7 @@
                             </div>
                         </div>
                         <!-- Company Stats Card -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="col-xl-3 col-md-6 mb-1">
                             <div class="card shadow mb-4">
                                 <!-- Card Body -->
                                 <div class="card-body" style="height: 250px;">
@@ -567,7 +618,7 @@
                             </div>
                         </div>
                         <!-- Priority Projects Card -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="col-xl-3 col-md-6 mb-1">
                             <div class="card shadow mb-4">
                                 <!-- Card Body -->
                                 <div class="card-body" style="height: 250px;">
@@ -596,42 +647,113 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Priority Projects Card -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <!-- User Composition Card -->
+                        <div class="col-xl-3 col-md-6 mb-1">
                             <div class="card shadow mb-4">
                                 <!-- Card Body -->
                                 <div class="card-body" style="height: 250px;">
-                                    <div class="row"> <!--Chart Title Row-->
-                                        <p class="text-center font-weight-bold" style="font-size: 1rem; margin: 0;">Priority Projects</p>
-                                        <p class="text-center" style="font-size: 0.75rem;">Priority end date</p>
-                                    </div>
                                     <div class="row"> <!--Chart Row-->
-                                        <div class="chart-container mx-auto" style="position: relative; height:100px; width:100px">
-                                            <canvas id="myPieChart"></canvas>
-                                        </div>
-                                    </div>
-                                    <div class="row"><!--Legend Row-->
-                                        <div class="mt-4 text-center small" style="font-size: 0.75rem;">
-                                            <span class="mr-2">
-                                                <i class="fas fa-circle" style="color: #6a11cb;"></i> Direct
-                                            </span>
-                                            <span class="mr-2" style="font-size: 0.75rem;">
-                                                <i class="fas fa-circle" style="color: #11CBC7;"></i> Social
-                                            </span>
-                                            <span class="mr-2" style="font-size: 0.75rem;">
-                                                <i class="fas fa-circle" style="color: #1CC88A;"></i> Referral
-                                            </span>
+                                        <div class="chart-container mx-auto my-4" style="position: absolute; width:370px">
+                                            <canvas id="userCompositionBarChart"></canvas>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- Members List Card -->
+                        <div class="col-xl-6 col-md-6 mb-1">
+                            <div class="card shadow mb-4">
+                                <!-- Card Body -->
+                                <div class="card-body" style="height: 250px;">
+                                    <div class="table-responsive-md">
+                                        <table class="table">
+                                            <thead>
+                                              <tr>
+                                                <th scope="col">Avatar</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Projects</th>
+                                                <th scope="col">Role</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <th scope="row">img</th>
+                                                <td>DemoAdmin</td>
+                                                <td>0</td>
+                                                <td>Administrator</td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Projects List Card -->
+                        <div class="col-xl-6 col-md-6 mb-1">
+                            <div class="card shadow mb-4">
+                                <!-- Card Body -->
+                                <div class="card-body" style="height: 250px;">
+                                    <div class="table-responsive-md">
+                                        <table class="table">
+                                            <thead>
+                                              <tr>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Start Date</th>
+                                                <th scope="col">End Date</th>
+                                                <th scope="col">Team</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <th scope="row">Project Name</th>
+                                                <td>dd/mm/yyyy</td>
+                                                <td>dd/mm/yyyy</td>
+                                                <td>N/A</td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tickets List Card -->
+                        <div class="col-xl-12 col-md-6 mb-1">
+                            <div class="card shadow mb-4">
+                                <!-- Card Body -->
+                                <div class="card-body" style="height: 250px;">
+                                    <div class="table-responsive-md">
+                                        <table class="table">
+                                            <thead>
+                                              <tr>
+                                                <th scope="col">Title</th>
+                                                <th scope="col">Developer</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Priority</th>
+                                                <th scope="col">Date</th>
+                                                <th scope="col">Action</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <th scope="row">Ticket Name</th>
+                                                <td>Assign Dev</td>
+                                                <td>Unassigned</td>
+                                                <td>Unassigned</td>
+                                                <td>dd/mm/yyyy</td>
+                                                <td>Action</td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <!-- Area Chart -->
                         <div class="col-xl-8 col-lg-7">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -868,10 +990,12 @@
 
     <!-- Page level plugins -->
     <script src="vendor/chart.js/Chart.min.js"></script>
+    
 
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="js/demo/userCompositionBarChart.js"></script>
 
     <!-- "!5-scripts" Bootstrap link to scripts, so bootstrap can work-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
