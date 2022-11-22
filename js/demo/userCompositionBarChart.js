@@ -73,6 +73,7 @@ var userCompositionBarChart = new Chart(ctx, {
     },
     options: {
         responsive: true,
+        maintainAspectRatio: false,
         scales: {
             yAxes: [{
                 stacked: true,
