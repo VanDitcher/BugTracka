@@ -11,8 +11,4 @@ $(document).ready(function() {
   $('#projectDataTable').DataTable();
 });
 
-$(document).ready(function() {
-  $('#dataTable').DataTable();
-});
-
 
