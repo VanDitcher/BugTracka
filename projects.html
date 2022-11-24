@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bug Tracka - Projects</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- Font Awesome Scripts -->
+    <script src="https://kit.fontawesome.com/c06ec17f47.js" crossorigin="anonymous"></script>
+    <!-- JQuery Script Tag -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <!-- Javascript Reference -->
+    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- CSS Reference -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Datatables Reference -->
+    <link href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="js\demo\datatables-demo.js"></script>
+    
+
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Sidebar  -->
+      <nav id="sidebar">
+          <div class="sidebar-header">
+            <h3 style="font-weight: bold; color: white"><i class="fa-solid fa-bug"></i> Bug Tracka</h3>
+            <strong><i class="fa-solid fa-bug"></i></strong>
+          </div>
+
+          <ul class="list-unstyled components">
+              <li>
+                <a href="index.html">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </a>
+              </li>
+              <li>
+                <a href="inbox.html">
+                    <i class="fas fa-bell"></i>
+                    Inbox
+                </a>
+              </li>
+              <li class="active">
+                <a href="projects.html">
+                    <i class="fas fa-folder"></i>
+                    Projects
+                </a>
+              </li>
+              <li>
+                <a href="tickets.html">
+                    <i class="fas fa-ticket"></i>
+                    Tickets
+                </a>
+              </li>
+              <li>
+                <a href="adminDash.html">
+                    <i class="fas fa-user-shield"></i>
+                    Admin
+                </a>
+              </li>
+              <!-- Sidebar Toggler (Sidebar) -->
+              <div class="row justify-content-md-center">
+                <div class="col-11 d-flex justify-content-center">
+                  <button type="button" id="sidebarCollapse" style="width: 40px; height: 40px; border-radius: 50%; background-color: #8841D5; border: 0; color: #C4A0EA;">
+                    <i class="fa-solid fa-align-left fa-sm" style="width: 40px; padding-right: 10px;"></i>
+                  </button>
+                </div>
+              </div>           
+          </ul>
+      </nav>
+
+      
+
+      <!-- Page Content  -->
+      <div id="content">
+
+          <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+              <div class="container-fluid">
+
+                  <!-- Topbar Search -->
+                  <form>
+                  <div class="input-group">
+                      <input type="text" class="form-control border-0 small" placeholder="Search for..."
+                          aria-label="Search" aria-describedby="basic-addon2" style="background-color: #F8F9FA;">
+                      <div class="input-group-append">
+                          <button class="btn" type="button" style="background-color: #6A11CB; border-bottom-right-radius: 10px; border-top-right-radius: 10px; border-bottom-left-radius: 0px; border-top-left-radius: 0px;">
+                              <i class="fas fa-search fa-sm" style="color: #FFFFFF;"></i>
+                          </button>
+                      </div>
+                  </div>
+                  </form>
+                  <!-- Topbar Navbar -->
+                  <ul class="navbar-nav ml-auto">
+                    <!-- Nav Item - Alerts -->
+                    <li class="nav-item dropdown no-arrow mx-1">
+                      <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas fa-bell fa-fw"></i>
+                          <!-- Counter - Alerts -->
+                          <span class="badge badge-danger badge-counter">3+</span>
+                      </a>
+                      <!-- Dropdown - Alerts -->
+                      <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                          aria-labelledby="alertsDropdown">
+                          <h6 class="dropdown-header">
+                              Alerts Center
+                          </h6>
+                          <a class="dropdown-item d-flex align-items-center" href="#">
+                              <div class="mr-3">
+                                  <div class="icon-circle bg-primary">
+                                      <i class="fas fa-file-alt text-white"></i>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="small text-gray-500">December 12, 2019</div>
+                                  <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                              </div>
+                          </a>
+                          <a class="dropdown-item d-flex align-items-center" href="#">
+                              <div class="mr-3">
+                                  <div class="icon-circle bg-success">
+                                      <i class="fas fa-donate text-white"></i>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="small text-gray-500">December 7, 2019</div>
+                                  $290.29 has been deposited into your account!
+                              </div>
+                          </a>
+                          <a class="dropdown-item d-flex align-items-center" href="#">
+                              <div class="mr-3">
+                                  <div class="icon-circle bg-warning">
+                                      <i class="fas fa-exclamation-triangle text-white"></i>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="small text-gray-500">December 2, 2019</div>
+                                  Spending Alert: We've noticed unusually high spending for your account.
+                              </div>
+                          </a>
+                          <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                      </div>
+                    </li>
+                    <!-- Nav Item - Messages -->
+                    <li class="nav-item dropdown no-arrow mx-1">
+                      <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas fa-envelope fa-fw"></i>
+                          <!-- Counter - Messages -->
+                          <span class="badge badge-danger badge-counter">7</span>
+                      </a>
+                      <!-- Dropdown - Messages -->
+                      <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                          aria-labelledby="messagesDropdown">
+                          <h6 class="dropdown-header">
+                              Message Center
+                          </h6>
+                          <a class="dropdown-item d-flex align-items-center" href="#">
+                              <div class="dropdown-list-image mr-3">
+                                  <img class="rounded-circle" src="img/undraw_profile_1.svg"
+                                      alt="...">
+                                  <div class="status-indicator bg-success"></div>
+                              </div>
+                              <div class="font-weight-bold">
+                                  <div class="text-truncate">Hi there! I am wondering if you can help me with a
+                                      problem I've been having.</div>
+                                  <div class="small text-gray-500">Emily Fowler · 58m</div>
+                              </div>
+                          </a>
+                          <a class="dropdown-item d-flex align-items-center" href="#">
+                              <div class="dropdown-list-image mr-3">
+                                  <img class="rounded-circle" src="img/undraw_profile_2.svg"
+                                      alt="...">
+                                  <div class="status-indicator"></div>
+                              </div>
+                              <div>
+                                  <div class="text-truncate">I have the photos that you ordered last month, how
+                                      would you like them sent to you?</div>
+                                  <div class="small text-gray-500">Jae Chun · 1d</div>
+                              </div>
+                          </a>
+                          <a class="dropdown-item d-flex align-items-center" href="#">
+                              <div class="dropdown-list-image mr-3">
+                                  <img class="rounded-circle" src="img/undraw_profile_3.svg"
+                                      alt="...">
+                                  <div class="status-indicator bg-warning"></div>
+                              </div>
+                              <div>
+                                  <div class="text-truncate">Last month's report looks great, I am very happy with
+                                      the progress so far, keep up the good work!</div>
+                                  <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                              </div>
+                          </a>
+                          <a class="dropdown-item d-flex align-items-center" href="#">
+                              <div class="dropdown-list-image mr-3">
+                                  <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                      alt="...">
+                                  <div class="status-indicator bg-success"></div>
+                              </div>
+                              <div>
+                                  <div class="text-truncate">Am I a good boy? The reason I ask is because someone
+                                      told me that people say this to all dogs, even if they aren't good...</div>
+                                  <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                              </div>
+                          </a>
+                          <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                      </div>
+                    </li>
+
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                      <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="mr-2 d-none d-lg-inline text-gray-600 small">Demo Admin</span>
+                          <img class="img-profile rounded-circle"
+                              src="img/undraw_profile.svg" style="height: 32px; width:32px;">
+                      </a>
+                      <!-- Dropdown - User Information -->
+                      <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                          aria-labelledby="userDropdown">
+                          <a class="dropdown-item" href="#">
+                              <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                              Profile
+                          </a>
+                          <a class="dropdown-item" href="#">
+                              <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                              Settings
+                          </a>
+                          <a class="dropdown-item" href="#">
+                              <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                              Activity Log
+                          </a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                              <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                              Logout
+                          </a>
+                      </div>
+                    </li>
+                  </ul>
+              </div>
+          </nav>
+          <!--Top Bar End-->
+
+          <!-- Begin Page Content -->
+          <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800" style="font-weight: bold;">Project Management</h1>
+            </div>
+
+            <!-- Content Row -->
+            <div class="row">
+
+                <!-- Active Projects Card -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card shadow h-100 py-2" style="background-color: #6A11CB;">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-s font-weight-bold text-uppercase mb-1" style="color: white;">
+                                        Active Projects</div>
+                                    <div class="h5 mb-0 font-weight-bold" style="color: white;">1</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-vial fa-2x" style="color: white;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Total Tickets Card -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card shadow h-100 py-2" style="background-color: #6C747B;">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-s font-weight-bold text-uppercase mb-1"  style="color: white;">
+                                        Total Tickets</div>
+                                    <div class="h5 mb-0 font-weight-bold" style="color: white;">3</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-layer-group fa-2x" style="color: white;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unassigned Tickets Card -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card shadow h-100 py-2" style="background-color: #FFC107">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-s font-weight-bold text-uppercase" style="color: white;">Unassigned Tickets
+                                    </div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="h5 mb-0 mx-3" style="color: white;">3</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-exclamation fa-2x" style="color: white;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analytics Card -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card shadow h-100 py-2" style="background-color: #35393F">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-s font-weight-bold text-uppercase mb-1" style="color: white;">
+                                        Analytics</div>
+                                    <div class="h5 mb-0 font-weight-bold" style="color: white;">0</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-chart-line fa-2x" style="color: white;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Content Row -->
+                    
+                <div class="row">
+                  <!-- Project List Card -->
+                  <div class="col-xl-12 col-md-6 mb-1 p-0" style="margin-left: 13px;">
+                      <div class="card shadow mb-4">
+                          <div class="card-body" style="height: 290px;">
+                            <div class="table-responsive my-custom-scrollbar">
+                              <table class="table" id="projectDataTable" width="100%" cellspacing="0">
+                                  <thead class="thead-dark">
+                                    <tr>
+                                      <th class="th-sm">Name</th>
+                                      <th class="th-sm">Priority</th>
+                                      <th class="th-sm">Start Date</th>
+                                      <th class="th-sm">End Date</th>
+                                      <th class="th-sm">Team</th>
+                                      <th class="th-sm"></th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">Build a Bug Tracker</th>
+                                      <td><button style="background-color: #00000000; border: solid; border-color: #e74a3b; color:#e74a3b; border-radius:3px; text-align:center; border-width: 1px;">High</button></td>
+                                      <td><button disabled style="font-size: 12px; background-color: #00000000; border: solid; border-color: #1cc88a; color:#1cc88a; border-radius:3px; text-align:center; border-width: 1px;">dd/mm/yy</button></td>
+                                      <td><button disabled style="font-size: 12px; background-color: #00000000; border: solid; border-color: #e74a3b; color:#e74a3b; border-radius:3px; text-align:center; border-width: 1px;">dd/mm/yy</button></td>
+                                      <td>Michael Vanditch</td>
+                                      <td><button style="font-weight: bold; font-size: 13px; background-color: #00000000; border: solid; border-color: #e74a3b; color:#e74a3b; border-radius:3px; text-align:center; border-width: 1px;">Remove</button></td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Build a Portfolio</th>
+                                      <td><button style="background-color: #00000000; border: solid; border-color: #f6c23e; color:#f6c23e; border-radius:3px; text-align:center; border-width: 1px;">Mid</button></td>
+                                      <td><button disabled style="font-size: 12px; background-color: #00000000; border: solid; border-color: #1cc88a; color:#1cc88a; border-radius:3px; text-align:center; border-width: 1px;">dd/mm/yy</button></td>
+                                      <td><button disabled style="font-size: 12px; background-color: #00000000; border: solid; border-color: #e74a3b; color:#e74a3b; border-radius:3px; text-align:center; border-width: 1px;">dd/mm/yy</button></td>
+                                      <td>Michael Vanditch</td>
+                                      <td><button style="font-weight: bold; font-size: 13px; background-color: #00000000; border: solid; border-color: #e74a3b; color:#e74a3b; border-radius:3px; text-align:center; border-width: 1px;">Remove</button></td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Build a Webscraper</th>
+                                      <td><button style="background-color: #00000000; border: solid; border-color: #1cc88a; color:#1cc88a; border-radius:3px; text-align:center; border-width: 1px;">Low</button></td>
+                                      <td><button disabled style="font-size: 12px; background-color: #00000000; border: solid; border-color: #1cc88a; color:#1cc88a; border-radius:3px; text-align:center; border-width: 1px;">dd/mm/yy</button></td>
+                                      <td><button disabled style="font-size: 12px; background-color: #00000000; border: solid; border-color: #e74a3b; color:#e74a3b; border-radius:3px; text-align:center; border-width: 1px;">dd/mm/yy</button></td>
+                                      <td>Michael Vanditch</td>
+                                      <td><button style="font-weight: bold; font-size: 13px; background-color: #00000000; border: solid; border-color: #e74a3b; color:#e74a3b; border-radius:3px; text-align:center; border-width: 1px;">Remove</button></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                            </div>
+                            <!--Add Project Button-->
+                            <div class="row justify-content-center">
+                              <div class="col-4 mr-auto">
+                                  <button style="max-height: 32px; margin-bottom: 15px; margin-top: 7px;font-weight: bold; font-size: clamp(0.5rem, 1vw, 1rem); background-color: #0D6EFD; border: solid; border-color: #0D6EFD; color:#F0FFFF; border-radius:4px; text-align:center; border-width: 5px;">Add Project</button>
+                              </div>
+                            </div>
+                      </div>  
+                  </div>
+                  <row>
+                    <!-- Priority Projects Card -->
+                  <div class="col-xl-12 col-md-6 mb-1 p-0">
+                    <div class="card shadow mb-4">
+                        <!-- Card Body -->
+                        <div class="card-body" style="height: 250px;">
+                            <div class="row"> <!--Chart Title Row-->
+                                <p class="text-center font-weight-bold" style="font-size: 1rem; margin: 0;">Priority Projects</p>
+                                <p class="text-center" style="font-size: 0.75rem;">Priority end date</p>
+                            </div>
+                            <div class="row"> <!--Chart Row-->
+                                <div class="chart-container mx-auto" style="position: relative; height:150px;">
+                                    <canvas id="priorityProjects"></canvas>
+                                </div>
+                                <script>
+                                  var ctx = document.getElementById('priorityProjects');
+                                  new Chart(ctx, {
+                                    type: 'doughnut',
+                                    data: {
+                                      labels: ['Low', 'Mid', 'High'],
+                                      datasets: [{
+                                        label: 'Project(s)',
+                                        data: [1, 1, 1],
+                                        backgroundColor: [
+                                            '#1cc88a',
+                                            '#f6c23e',
+                                            '#e74a3b'
+                                        ],
+                                        borderColor: [
+                                          '#1cc88a',
+                                          '#f6c23e',
+                                          '#e74a3b'
+                                        ],
+                                        borderWidth: 1
+                                      }]
+                                    },
+                                    options: {
+                                      responsive: true,
+                                      maintainAspectRatio: false,
+                                      plugins:{
+                                        legend:{display: true}
+
+                                      },
+                                      scales: {
+                                        y: {
+                                          beginAtZero: true,
+                                          grid: {
+                                            color: "rgba(0, 0, 0, 0)",
+                                          },
+                                          display: false
+                                        }
+                                      }
+                                    }
+                                  });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  </row>
+              </div>
+          </div>
+
+
+
+              </div>
+            </div><!-- /.container-fluid --><!-- End of Main Content -->
+        </div>
+      </div>
+    </div>
+    
+    
+
+
+
+
+    <!-- Bootstrap Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <!-- PopperJS -->
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+
+  </body>
+</html>
