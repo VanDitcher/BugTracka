@@ -11,16 +11,21 @@
     <script src="https://kit.fontawesome.com/c06ec17f47.js" crossorigin="anonymous"></script>
     <!-- JQuery Script Tag -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    <!-- Javascript Reference -->
-    <script src="js/main.js"></script>
+    <!-- Sidebar Functionality -->
+    <script>
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+    <!-- Firebase -->
+    <script type="module" src="js/fBaseTickets.js"></script>
+    <!-- Chart JS Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- CSS Reference -->
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- Datatables Reference -->
-    <link href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" rel="stylesheet">
-    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-    <script src="js\demo\datatables-demo.js"></script>
+    
     
 
 
@@ -166,8 +171,6 @@
                           </h6>
                           <a class="dropdown-item d-flex align-items-center" href="#">
                               <div class="dropdown-list-image mr-3">
-                                  <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                      alt="...">
                                   <div class="status-indicator bg-success"></div>
                               </div>
                               <div class="font-weight-bold">
@@ -178,8 +181,6 @@
                           </a>
                           <a class="dropdown-item d-flex align-items-center" href="#">
                               <div class="dropdown-list-image mr-3">
-                                  <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                      alt="...">
                                   <div class="status-indicator"></div>
                               </div>
                               <div>
@@ -190,8 +191,6 @@
                           </a>
                           <a class="dropdown-item d-flex align-items-center" href="#">
                               <div class="dropdown-list-image mr-3">
-                                  <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                      alt="...">
                                   <div class="status-indicator bg-warning"></div>
                               </div>
                               <div>
@@ -202,8 +201,6 @@
                           </a>
                           <a class="dropdown-item d-flex align-items-center" href="#">
                               <div class="dropdown-list-image mr-3">
-                                  <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                      alt="...">
                                   <div class="status-indicator bg-success"></div>
                               </div>
                               <div>
@@ -220,12 +217,13 @@
 
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
-                      <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="mr-2 d-none d-lg-inline text-gray-600 small">Demo Admin</span>
-                          <img class="img-profile rounded-circle"
-                              src="img/undraw_profile.svg" style="height: 32px; width:32px;">
-                      </a>
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Demo Admin</span>
+                        <button class="profileSettingBtn" type="button">
+                          <i class="fa-solid fa-user fa-lg" style="width: 40px; padding-right: 11px; padding-bottom: 14px;"></i>
+                          </button>
+                        </a>
                       <!-- Dropdown - User Information -->
                       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                           aria-labelledby="userDropdown">
@@ -310,7 +308,7 @@
                                     </div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
-                                            <div class="h5 mb-0 mx-3" style="color: white;">3</div>
+                                            <div class="h5 mb-0 font-weight-bold" style="color: white;">3</div>
                                         </div>
 
                                     </div>
@@ -360,50 +358,17 @@
                                     <th class="th-sm">Action</th>
                                   </tr>
                                 </thead>
-                                <tbody>
-                                  <tr>
-                                    <th scope="row">Portfolio Ticket 1</th>
-                                    <td><button style="background-color: #1F9EAE; border: none; color:white; border-radius:3px; text-align:center;">Assign Dev</button></td>
-                                    <td><button disabled style="background-color: #00000000; border: solid; border-color: #1cc88a; color:#1cc88a; border-radius:3px; text-align:center; border-width: 1px;">New</button></td>
-                                    <td><button style="background-color: #00000000; border: solid; border-color: #e74a3b; color:#e74a3b; border-radius:3px; text-align:center; border-width: 1px;">High</button></td>
-                                    <td><button disabled style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;">dd/mm/yy</button></td>
-                                    <td>
-                                        <button style="font-size: 12px; background-color: #00000000; border: solid; border-color: #1F9EAE; color:#1F9EAE; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-eye" style="color: #1F9EAE;"></i></button>
-                                        <button style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-pen" style="color: #858585;"></i></button>
-                                        <button style="font-size: 12px; background-color: #00000000; border: solid; border-color: #e74a3b; color:#e74a3b; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-file" style="color: #e74a3b;"></i></button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Portfolio Ticket 2</th>
-                                    <td><button style="background-color: #1F9EAE; border: none; color:white; border-radius:3px; text-align:center;">Assign Dev</button></td>
-                                    <td><button disabled style="background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;">Old</button></td>
-                                    <td><button style="background-color: #00000000; border: solid; border-color: #f6c23e; color:#f6c23e; border-radius:3px; text-align:center; border-width: 1px;">Mid</button></td>
-                                    <td><button disabled style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;">dd/mm/yy</button></td>
-                                    <td>
-                                        <button style="font-size: 12px; background-color: #00000000; border: solid; border-color: #1F9EAE; color:#1F9EAE; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-eye" style="color: #1F9EAE;"></i></button>
-                                        <button style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-pen" style="color: #858585;"></i></button>
-                                        <button style="font-size: 12px; background-color: #00000000; border: solid; border-color: #e74a3b; color:#e74a3b; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-file" style="color: #e74a3b;"></i></button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Portfolio Ticket 2</th>
-                                    <td><button style="background-color: #1F9EAE; border: none; color:white; border-radius:3px; text-align:center;">Assign Dev</button></td>
-                                    <td><button disabled style="background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;">Old</button></td>
-                                    <td><button style="background-color: #00000000; border: solid; border-color: #1cc88a; color:#1cc88a; border-radius:3px; text-align:center; border-width: 1px;">Low</button></td>
-                                    <td><button disabled style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;">dd/mm/yy</button></td>
-                                    <td>
-                                        <button style="font-size: 12px; background-color: #00000000; border: solid; border-color: #1F9EAE; color:#1F9EAE; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-eye" style="color: #1F9EAE;"></i></button>
-                                        <button style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-pen" style="color: #858585;"></i></button>
-                                        <button style="font-size: 12px; background-color: #00000000; border: solid; border-color: #e74a3b; color:#e74a3b; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-file" style="color: #e74a3b;"></i></button>
-                                    </td>
-                                  </tr>
+                                <tbody id="tickets-tbody">
+                                    
                                 </tbody>
                               </table>
                         </div>
                           <!--Add Ticket Button-->
                           <div class="row justify-content-center">
                             <div class="col-4 mr-auto">
-                                <button style="max-height: 32px; margin-bottom: 15px; margin-top: 7px;font-weight: bold; font-size: clamp(0.5rem, 1vw, 1rem); background-color: #0D6EFD; border: solid; border-color: #0D6EFD; color:#F0FFFF; border-radius:4px; text-align:center; border-width: 5px;">Add Ticket</button>
+                                <a href="#" data-toggle="modal" data-target="#ticketAddModal" style="text-decoration: none;">
+                                    <button id="addTicketBtn" style="max-height: 32px; margin-bottom: 15px; margin-top: 7px;font-weight: bold; font-size: clamp(0.5rem, 1vw, 1rem); background-color: #0D6EFD; border: solid; border-color: #0D6EFD; color:#F0FFFF; border-radius:4px; text-align:center; border-width: 5px;">Add Ticket</button>
+                                </a>
                             </div>
                           </div>
                         </div>  
@@ -421,47 +386,7 @@
                               <div class="chart-container mx-auto" style="position: relative; height:250px">
                                   <canvas id="ticketDistribution"></canvas>
                               </div>
-                              <script>
-                                var ctx = document.getElementById('ticketDistribution');
-                                new Chart(ctx, {
-                                  type: 'bar',
-                                  data: {
-                                    labels: ['Low', 'Mid', 'High'],
-                                    datasets: [{
-                                      label: 'Tickets',
-                                      data: [1, 1, 1],
-                                      backgroundColor: [
-                                          '#1cc88a',
-                                          '#f6c23e',
-                                          '#e74a3b'
-                                      ],
-                                      borderColor: [
-                                        '#1cc88a',
-                                        '#f6c23e',
-                                        '#e74a3b'
-                                      ],
-                                      borderWidth: 1
-                                    }]
-                                  },
-                                  options: {
-                                    responsive: true,
-                                    maintainAspectRatio: false,
-                                    indexAxis: 'y',
-                                    plugins:{
-                                      legend:{display: false}
-
-                                    },
-                                    scales: {
-                                      y: {
-                                        beginAtZero: true,
-                                        grid: {
-                                          color: "rgba(0, 0, 0, 0)",
-                                        }
-                                      }
-                                    }
-                                  }
-                                });
-                              </script>
+                              <script type="module" src="js/ticketCharts.js"></script>
                           </div>
                       </div>
                   </div>
@@ -480,6 +405,164 @@
     </div>
     
     
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ticket Desc Modal-->
+    <div class="modal fade" id="ticketDescModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ticket Description</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="ticketModalBodyText">Click me to change my HTML content (innerHTML).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Ticket Modal-->
+    <div class="modal fade" id="ticketEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Ticket (Leave blank to keep value)</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editTicketForm">
+                        <div class="form-group">
+                          <label for="tixTitleEdit">Title</label>
+                          <input type="text" class="form-control" id="tixTitleEdit" placeholder="Enter title">
+                        </div>
+                        <div class="form-group">
+                            <label for="tixDescEdit">Description</label>
+                            <input type="text" class="form-control" id="tixDescEdit" placeholder="Enter description">
+                          </div>
+                        <div class="form-group">
+                            <label for="tixStatusEdit">Status</label>
+                            <select class="form-control" id="tixStatusEdit">
+                                <option>New</option>
+                                <option>Done</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tixPriorityEdit">Priority</label>
+                            <select class="form-control" id="tixPriorityEdit">
+                                <option>High</option>
+                                <option>Mid</option>
+                                <option>Low</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tixDateEdit">Date</label>
+                            <input type="date" class="form-control" id="tixDateEdit">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Ticket Modal-->
+    <div class="modal fade" id="ticketAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Ticket</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addTicketForm">
+                        <div class="form-group">
+                          <label for="titleAdd">Title</label>
+                          <input type="text" class="form-control" id="titleAdd" placeholder="Enter title">
+                        </div>
+                        <div class="form-group">
+                            <label for="descAdd">Description</label>
+                            <input type="text" class="form-control" id="descAdd" placeholder="Enter title">
+                          </div>
+                        <div class="form-group">
+                            <label for="statusAdd">Status</label>
+                            <select class="form-control" id="statusAdd">
+                                <option>New</option>
+                                <option>Done</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="priorityAdd">Priority</label>
+                            <select class="form-control" id="priorityAdd">
+                                <option>High</option>
+                                <option>Mid</option>
+                                <option>Low</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateAdd">Date</label>
+                            <input type="date" class="form-control" id="dateAdd" placeholder="Enter date">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assign Dev Modal-->
+    <div class="modal fade" id="assignDevModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Dev Assignment</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="assignDevForm">
+                        <div class="form-group">
+                            <label for="availableDevSelect">Available Developers</label>
+                            <select class="form-control" id="availableDevSelect">
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 
 
@@ -489,6 +572,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <!-- PopperJS -->
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
-
   </body>
 </html>

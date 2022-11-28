@@ -1,0 +1,135 @@
+{
+  "projects": {
+    "P0": {
+      "end": "2022-12-01",
+      "id": "0",
+      "priority": "high",
+      "start": "2022-11-19",
+      "team": "Coder Jokers",
+      "title": "Build a Bug Tracker"
+    },
+    "P1": {
+      "end": "2022-12-28",
+      "id": "1",
+      "priority": "mid",
+      "start": "2022-12-01",
+      "team": "Coder Jokers",
+      "title": "Build a Portfolio"
+    },
+    "P2": {
+      "end": "2023-02-12",
+      "id": "2",
+      "priority": "low",
+      "start": "2022-11-23",
+      "team": "Coder Monkeys",
+      "title": "Build a Web Scraper"
+    }
+  },
+  "tickets": {
+    "T0": {
+      "date": "2022-11-24",
+      "desc": "Database still hasn't been set up yet",
+      "dev": "tbd",
+      "priority": "high",
+      "status": "done",
+      "title": "Bug Tracker Ticket 1"
+    },
+    "T1": {
+      "date": "2022-11-23",
+      "desc": "Develop a Demo Project Manager login",
+      "dev": "tbd",
+      "id": "1",
+      "priority": "mid",
+      "status": "old",
+      "title": "Bug Tracker Ticket 2"
+    },
+    "T2": {
+      "date": "2022-11-26",
+      "desc": "Come up with basic portfolio design",
+      "dev": "tbd",
+      "id": "2",
+      "priority": "low",
+      "status": "old",
+      "title": "Portfolio Ticket 1"
+    },
+    "T26838": {
+      "date": "2022-11-29",
+      "desc": "Set up firebase for Inbox page",
+      "dev": "tbd",
+      "id": 26838,
+      "priority": "high",
+      "status": "done",
+      "title": "Bug Tracker Ticket 5"
+    },
+    "T45663": {
+      "date": "2022-11-28",
+      "desc": "Set up firebase for Projects page",
+      "dev": "tbd",
+      "id": 45663,
+      "priority": "high",
+      "status": "done",
+      "title": "Bug Tracker Ticket 3"
+    },
+    "T7548": {
+      "date": "2022-11-28",
+      "desc": "Set up firebase for Admin page",
+      "dev": "tbd",
+      "priority": "high",
+      "status": "done",
+      "title": "Bug Tracker Ticket 4"
+    },
+    "T97343": {
+      "date": "2022-11-29",
+      "desc": "Finish setting up firebase for the dashboard",
+      "dev": "tbd",
+      "id": 97343,
+      "priority": "high",
+      "status": "done",
+      "title": "Bug Tracker Ticket 6"
+    }
+  },
+  "users": {
+    "U0": {
+      "id": "0",
+      "name": "Ashlyn Richard",
+      "projects": "0",
+      "role": "Project Manager",
+      "team": "none"
+    },
+    "U1": {
+      "id": "1",
+      "name": "Demo Admin",
+      "projects": "0",
+      "role": "Administrator",
+      "team": "none"
+    },
+    "U2": {
+      "id": "2",
+      "name": "Demo Dev",
+      "projects": "2",
+      "role": "Developer",
+      "team": "Coder Jokers"
+    },
+    "U3": {
+      "id": "3",
+      "name": "John Doe",
+      "projects": "1",
+      "role": "Developer",
+      "team": "Coder Monkeys"
+    },
+    "U4": {
+      "id": "4",
+      "name": "Jane Doe",
+      "projects": "0",
+      "role": "Submitter",
+      "team": "none"
+    },
+    "U5": {
+      "id": "5",
+      "name": "Samson Mercer",
+      "projects": "0",
+      "role": "Submitter",
+      "team": "None"
+    }
+  }
+}

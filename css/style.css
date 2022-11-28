@@ -3,6 +3,18 @@
 */
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+.profileSettingBtn{
+  width: 40px; 
+  height: 40px; 
+  border-radius: 25%; 
+  background-color: #6A11CB; 
+  border: 0; 
+  color: #C4A0EA;
+  transition-duration: 0.2s;
+}
+.profileSettingBtn:hover {
+  background-color: #8322ED;
+}
 
 .my-custom-scrollbar {
   position: relative;

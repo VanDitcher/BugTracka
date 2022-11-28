@@ -10,5 +10,23 @@
     "datatables.net-responsive-bs5": "^2.4.0",
     "datatables.net-scroller-bs5": "^2.1.0",
     "jquery": "^3.6.1"
-  }
+  },
+  "type": "module",
+  "name": "bug-tracker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["css",
+  "html",
+  "responsive",
+  "bug tracker",
+  "app",
+  "tracker",
+  "bug"],
+  "author": "VanDitcher",
+  "license": "Apache-2.0",
+  "description": "A web application used to track bugs via ticket submission"
 }
