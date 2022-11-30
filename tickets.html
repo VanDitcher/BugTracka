@@ -36,52 +36,33 @@
     <div class="wrapper">
       <!-- Sidebar  -->
       <nav id="sidebar">
-          <div class="sidebar-header">
-            <h3 style="font-weight: bold; color: white"><i class="fa-solid fa-bug"></i> Bug Tracka</h3>
-            <strong><i class="fa-solid fa-bug"></i></strong>
-          </div>
-
-          <ul class="list-unstyled components">
-              <li>
-                <a href="index.html">
-                    <i class="fas fa-tachometer-alt"></i>
-                    Dashboard
-                </a>
-              </li>
-              <li>
-                <a href="inbox.html">
-                    <i class="fas fa-bell"></i>
-                    Inbox
-                </a>
-              </li>
-              <li>
-                <a href="projects.html">
-                    <i class="fas fa-folder"></i>
-                    Projects
-                </a>
-              </li>
-              <li class="active">
-                <a href="tickets.html">
-                    <i class="fas fa-ticket"></i>
-                    Tickets
-                </a>
-              </li>
-              <li>
-                <a href="adminDash.html">
-                    <i class="fas fa-user-shield"></i>
-                    Admin
-                </a>
-              </li>
-              <!-- Sidebar Toggler (Sidebar) -->
-              <div class="row justify-content-md-center">
-                <div class="col-11 d-flex justify-content-center">
-                  <button type="button" id="sidebarCollapse" style="width: 40px; height: 40px; border-radius: 50%; background-color: #8841D5; border: 0; color: #C4A0EA;">
-                    <i class="fa-solid fa-align-left fa-sm" style="width: 40px; padding-right: 10px;"></i>
-                  </button>
-                </div>
-              </div>           
-          </ul>
-      </nav>
+        <ul class="list-unstyled components">
+            <li>
+              <a href="index.html">
+                  <i class="fas fa-home"></i>
+                  Home
+              </a>
+            </li>
+            <li>
+              <a href="projects.html">
+                  <i class="fas fa-folder"></i>
+                  Projects
+              </a>
+            </li>
+            <li class="active">
+              <a href="tickets.html">
+                  <i class="fas fa-ticket"></i>
+                  Tickets
+              </a>
+            </li>
+            <li>
+              <a href="adminDash.html">
+                  <i class="fas fa-user-shield"></i>
+                  Admin
+              </a>
+            </li>        
+        </ul>
+    </nav>
 
       
 
@@ -90,131 +71,10 @@
 
           <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
               <div class="container-fluid">
+                <h1 style="font-weight: bold; color:#6A11CB"><i class="fa-solid fa-bug" style="color:#6A11CB;"></i> Bug Tracka</h1>
 
-                  <!-- Topbar Search -->
-                  <form>
-                  <div class="input-group">
-                      <input type="text" class="form-control border-0 small" placeholder="Search for..."
-                          aria-label="Search" aria-describedby="basic-addon2" style="background-color: #F8F9FA;">
-                      <div class="input-group-append">
-                          <button class="btn" type="button" style="background-color: #6A11CB; border-bottom-right-radius: 10px; border-top-right-radius: 10px; border-bottom-left-radius: 0px; border-top-left-radius: 0px;">
-                              <i class="fas fa-search fa-sm" style="color: #FFFFFF;"></i>
-                          </button>
-                      </div>
-                  </div>
-                  </form>
                   <!-- Topbar Navbar -->
                   <ul class="navbar-nav ml-auto">
-                    <!-- Nav Item - Alerts -->
-                    <li class="nav-item dropdown no-arrow mx-1">
-                      <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fas fa-bell fa-fw"></i>
-                          <!-- Counter - Alerts -->
-                          <span class="badge badge-danger badge-counter">3+</span>
-                      </a>
-                      <!-- Dropdown - Alerts -->
-                      <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                          aria-labelledby="alertsDropdown">
-                          <h6 class="dropdown-header">
-                              Alerts Center
-                          </h6>
-                          <a class="dropdown-item d-flex align-items-center" href="#">
-                              <div class="mr-3">
-                                  <div class="icon-circle bg-primary">
-                                      <i class="fas fa-file-alt text-white"></i>
-                                  </div>
-                              </div>
-                              <div>
-                                  <div class="small text-gray-500">December 12, 2019</div>
-                                  <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                              </div>
-                          </a>
-                          <a class="dropdown-item d-flex align-items-center" href="#">
-                              <div class="mr-3">
-                                  <div class="icon-circle bg-success">
-                                      <i class="fas fa-donate text-white"></i>
-                                  </div>
-                              </div>
-                              <div>
-                                  <div class="small text-gray-500">December 7, 2019</div>
-                                  $290.29 has been deposited into your account!
-                              </div>
-                          </a>
-                          <a class="dropdown-item d-flex align-items-center" href="#">
-                              <div class="mr-3">
-                                  <div class="icon-circle bg-warning">
-                                      <i class="fas fa-exclamation-triangle text-white"></i>
-                                  </div>
-                              </div>
-                              <div>
-                                  <div class="small text-gray-500">December 2, 2019</div>
-                                  Spending Alert: We've noticed unusually high spending for your account.
-                              </div>
-                          </a>
-                          <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                      </div>
-                    </li>
-                    <!-- Nav Item - Messages -->
-                    <li class="nav-item dropdown no-arrow mx-1">
-                      <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fas fa-envelope fa-fw"></i>
-                          <!-- Counter - Messages -->
-                          <span class="badge badge-danger badge-counter">7</span>
-                      </a>
-                      <!-- Dropdown - Messages -->
-                      <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                          aria-labelledby="messagesDropdown">
-                          <h6 class="dropdown-header">
-                              Message Center
-                          </h6>
-                          <a class="dropdown-item d-flex align-items-center" href="#">
-                              <div class="dropdown-list-image mr-3">
-                                  <div class="status-indicator bg-success"></div>
-                              </div>
-                              <div class="font-weight-bold">
-                                  <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                      problem I've been having.</div>
-                                  <div class="small text-gray-500">Emily Fowler · 58m</div>
-                              </div>
-                          </a>
-                          <a class="dropdown-item d-flex align-items-center" href="#">
-                              <div class="dropdown-list-image mr-3">
-                                  <div class="status-indicator"></div>
-                              </div>
-                              <div>
-                                  <div class="text-truncate">I have the photos that you ordered last month, how
-                                      would you like them sent to you?</div>
-                                  <div class="small text-gray-500">Jae Chun · 1d</div>
-                              </div>
-                          </a>
-                          <a class="dropdown-item d-flex align-items-center" href="#">
-                              <div class="dropdown-list-image mr-3">
-                                  <div class="status-indicator bg-warning"></div>
-                              </div>
-                              <div>
-                                  <div class="text-truncate">Last month's report looks great, I am very happy with
-                                      the progress so far, keep up the good work!</div>
-                                  <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                              </div>
-                          </a>
-                          <a class="dropdown-item d-flex align-items-center" href="#">
-                              <div class="dropdown-list-image mr-3">
-                                  <div class="status-indicator bg-success"></div>
-                              </div>
-                              <div>
-                                  <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                      told me that people say this to all dogs, even if they aren't good...</div>
-                                  <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                              </div>
-                          </a>
-                          <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                      </div>
-                    </li>
-
-                    <div class="topbar-divider d-none d-sm-block"></div>
-
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -228,16 +88,8 @@
                       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                           aria-labelledby="userDropdown">
                           <a class="dropdown-item" href="#">
-                              <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                              Profile
-                          </a>
-                          <a class="dropdown-item" href="#">
                               <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                               Settings
-                          </a>
-                          <a class="dropdown-item" href="#">
-                              <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                              Activity Log
                           </a>
                           <div class="dropdown-divider"></div>
                           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -262,83 +114,83 @@
             <!-- Content Row -->
             <div class="row">
 
-                <!-- Active Projects Card -->
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card shadow h-100 py-2" style="background-color: #6A11CB;">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-s font-weight-bold text-uppercase mb-1" style="color: white;">
-                                        Active Projects</div>
-                                    <div class="h5 mb-0 font-weight-bold" style="color: white;">1</div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-vial fa-2x" style="color: white;"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Total Tickets Card -->
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card shadow h-100 py-2" style="background-color: #6C747B;">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-s font-weight-bold text-uppercase mb-1"  style="color: white;">
-                                        Total Tickets</div>
-                                    <div class="h5 mb-0 font-weight-bold" style="color: white;">3</div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-layer-group fa-2x" style="color: white;"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Unassigned Tickets Card -->
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card shadow h-100 py-2" style="background-color: #FFC107">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-s font-weight-bold text-uppercase" style="color: white;">Unassigned Tickets
+                    <!-- Active Projects Card -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card shadow h-100 py-2" style="background-color: #6A11CB;">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-s font-weight-bold text-uppercase mb-1" style="color: white;">
+                                            Active Projects</div>
+                                        <div class="h5 mb-0"><p id="activeProjectsDashCard" style="color: white; font-weight: bold;"></p></div>
                                     </div>
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col-auto">
-                                            <div class="h5 mb-0 font-weight-bold" style="color: white;">3</div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-vial fa-2x" style="color: white;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Total Tickets Card -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card shadow h-100 py-2" style="background-color: #6C747B;">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-s font-weight-bold text-uppercase mb-1"  style="color: white;">
+                                            Total Tickets</div>
+                                        <div class="h5 mb-0"><p id="totalTicketsDashCard" style="color: white; font-weight: bold;"></p></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-layer-group fa-2x" style="color: white;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Unassigned Tickets Card -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card shadow h-100 py-2" style="background-color: #FFC107">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-s font-weight-bold text-uppercase" style="color: white;">Unassigned Tickets
                                         </div>
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-auto">
+                                                <div class="h5 mb-0"><p id="unassignedTicketsDashCard" style="color: white; font-weight: bold;"></p></div>
+                                            </div>
 
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-exclamation fa-2x" style="color: white;"></i>
                                     </div>
                                 </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-exclamation fa-2x" style="color: white;"></i>
-                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Analytics Card -->
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card shadow h-100 py-2" style="background-color: #35393F">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-s font-weight-bold text-uppercase mb-1" style="color: white;">
-                                        Analytics</div>
-                                    <div class="h5 mb-0 font-weight-bold" style="color: white;">0</div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-chart-line fa-2x" style="color: white;"></i>
+                    <!-- Analytics Card -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card shadow h-100 py-2" style="background-color: #35393F">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-s font-weight-bold text-uppercase mb-1" style="color: white;">
+                                            Analytics</div>
+                                        <div class="h5 mb-0"><p id="analyticsDashCard" style="color: white; font-weight: bold;"></p></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-chart-line fa-2x" style="color: white;"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-              </div><!-- Content Row End -->
               <!-- Content Row -->
                     
               <div class="row">
@@ -426,18 +278,213 @@
     </div>
 
     <!-- Ticket Desc Modal-->
-    <div class="modal fade" id="ticketDescModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
+    <div class="modal fade" id="ticketDescModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content" style="background-color: #fefefe;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ticket Description</h5>
+                    <h5 class="modal-title" id="ticketDescriptionHeader" style="font-size: 30px; font-weight: bold; color:#35393F;">Details for Ticket ####</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p id="ticketModalBodyText">Click me to change my HTML content (innerHTML).</p>
+                    <div class="row border-bottom">
+                        <div class="col" id="ticketDescriptionSection">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="font-weight-bold text-uppercase mb-1" style="font-size: 15px; color:#35393F;">Ticket Title</div>
+                                    <div class="mb-0"><p id="ticketDescriptionSectionTitle" style="margin-left: 8px; font-size: 15px; color: #35393F;">"Ticket Title"</p></div>
+                                </div>
+                                <div class="col">
+                                    <div class="font-weight-bold text-uppercase mb-1" style="font-size: 15px; color: #35393F;">Ticket Description</div>
+                                    <div class="mb-0"><p id="ticketDescriptionSectionDesc" style="margin-left: 8px; font-size: 15px; color: #35393F;">"Ticket Description"</p></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="font-weight-bold text-uppercase mb-1" style="font-size: 15px; color: #35393F;">Assigned Developer</div>
+                                    <div class="mb-0"><p id="ticketDescriptionSectionDev" style="margin-left: 8px; font-size: 15px; color: #35393F;">"Assigned Developer"</p></div>
+                                </div>
+                                <div class="col">
+                                    <div class="font-weight-bold text-uppercase mb-1" style="font-size: 15px; color: #35393F;">Submitter</div>
+                                    <div class="mb-0"><p id="ticketDescriptionSectionSubmitter" style="margin-left: 8px; font-size: 15px; color: #35393F;">"Submitter"</p></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="font-weight-bold text-uppercase mb-1" style="font-size: 15px; color: #35393F;">Project</div>
+                                    <div class="mb-0"><p id="ticketDescriptionSectionProject" style="margin-left: 8px; font-size: 15px; color: #35393F;">"Project"</p></div>
+                                </div>
+                                <div class="col">
+                                    <div class="font-weight-bold text-uppercase mb-1" style="font-size: 15px; color: #35393F;">Ticket Priority</div>
+                                    <div class="mb-0"><p id="ticketDescriptionSectionPriority" style="margin-left: 8px; font-size: 15px; color: #35393F;">"Ticket Priority"</p></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="font-weight-bold text-uppercase mb-1" style="font-size: 15px; color: #35393F;">Ticket Status</div>
+                                    <div class="mb-0"><p id="ticketDescriptionSectionStatus" style="margin-left: 8px; font-size: 15px; color: #35393F;">"Ticket Status"</p></div>
+                                </div>
+                                <div class="col">
+                                    <div class="font-weight-bold text-uppercase mb-1" style="font-size: 15px; color: #35393F;">Last Updated</div>
+                                    <div class="mb-0"><p id="ticketDescriptionSectionLastUpdated" style="margin-left: 8px; font-size: 15px; color: #35393F;">"Last Updated"</p></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="font-weight-bold text-uppercase mb-1" style="font-size: 15px; color: #35393F;">Created</div>
+                                    <div class="mb-0"><p id="ticketDescriptionSectionCreated" style="margin-left: 8px; font-size: 15px; color: #35393F;">"Created"</p></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 border-left" id="ticketCommentSection">
+                            <!-- Comment Entry -->
+                            <div class="font-weight-bold text-uppercase mb-1 ml-3" style="font-size: 15px; color: #35393F;">Add comment here:</div>
+                            <form>
+                                <div class="input-group">
+                                    <input type="text" id="ticketCommentAddValue" class="form-control border-1 small ml-3" style="background-color: #FFFFFF;">
+                                    <div class="input-group-append">
+                                        <button class="btn mr-3 mb-2" id="ticketCommentAddButton" type="button" style="background-color: #0D6EFD; color: #FFFFFF;">
+                                            ADD
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- Ticket Comment Section -->
+                            <div class="col">
+                                <div class="card shadow mb-4">
+                                    <div class="table-responsive my-custom-scrollbar">
+                                        <table class="table" id="ticketCommentTable" width="100%" cellspacing="0">
+                                            <thead class="thead-dark">
+                                            <tr>
+                                                <th class="th-sm">Commenter</th>
+                                                <th class="th-sm">Message</th>
+                                                <th class="th-sm">Created</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="tickets-tbody">
+                                                <tr>
+                                                    <td>Person</td>
+                                                    <td>Message</td>
+                                                    <td>Date</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Person</td>
+                                                    <td>Message</td>
+                                                    <td>Date</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Person</td>
+                                                    <td>Message</td>
+                                                    <td>Date</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Person</td>
+                                                    <td>Message</td>
+                                                    <td>Date</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Person</td>
+                                                    <td>Message</td>
+                                                    <td>Date</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Person</td>
+                                                    <td>Message</td>
+                                                    <td>Date</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6" id="ticketHistorySection">
+                            <div class="font-weight-bold text-uppercase;" style="margin-top: 10px; font-size: 20px; color: #35393F;">Ticket History</div>
+                            <div class="card shadow my-3">
+                                <div class="table-responsive my-custom-scrollbar">
+                                    <table class="table" id="ticketCommentTable" width="100%" cellspacing="0">
+                                        <thead class="thead-dark">
+                                        <tr>
+                                            <th class="th-sm">Property</th>
+                                            <th class="th-sm">Old Value</th>
+                                            <th class="th-sm">New Value</th>
+                                            <th class="th-sm">Date Changed</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Property</td>
+                                                <td>Old Value</td>
+                                                <td>New Value</td>
+                                                <td>Date Changed</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Property</td>
+                                                <td>Old Value</td>
+                                                <td>New Value</td>
+                                                <td>Date Changed</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Property</td>
+                                                <td>Old Value</td>
+                                                <td>New Value</td>
+                                                <td>Date Changed</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Property</td>
+                                                <td>Old Value</td>
+                                                <td>New Value</td>
+                                                <td>Date Changed</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Property</td>
+                                                <td>Old Value</td>
+                                                <td>New Value</td>
+                                                <td>Date Changed</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Property</td>
+                                                <td>Old Value</td>
+                                                <td>New Value</td>
+                                                <td>Date Changed</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 border-left" id="ticketUploadSection">
+                            <div class="font-weight-bold text-uppercase;" style="margin-top: 10px; font-size: 20px; color: #35393F;">Add Attachments</div>
+                            <div class="card shadow my-3">
+                                <div class="table-responsive my-custom-scrollbar">
+                                    <table class="table" id="ticketCommentTable" width="100%" cellspacing="0">
+                                        <thead class="thead-dark">
+                                        <tr>
+                                            <th class="th-sm">File</th>
+                                            <th class="th-sm">Uploader</th>
+                                            <th class="th-sm">Notes</th>
+                                            <th class="th-sm">Created</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Demo File</td>
+                                                <td>Demo Dev</td>
+                                                <td>Notes</td>
+                                                <td>Date</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <input class="form-control" type="file" id="ticketFileUpload">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -527,8 +574,9 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="dateAdd">Date</label>
-                            <input type="date" class="form-control" id="dateAdd" placeholder="Enter date">
+                            <label for="projectSelectAdd">Project Select</label>
+                            <select class="form-control" id="projectSelectAdd">
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                       </form>

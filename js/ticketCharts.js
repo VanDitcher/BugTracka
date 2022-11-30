@@ -1,6 +1,4 @@
 import {tixChartVals} from './fBaseTickets.js';
-
-console.log("test")
 //Ticket Distribution Bar Chart (TICKET MANAGEMENT)
 var ctx = document.getElementById('ticketDistribution');
 new Chart(ctx, {

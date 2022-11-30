@@ -35,33 +35,46 @@
     <div class="wrapper">
       <!-- Sidebar  -->
       <nav id="sidebar">
-        <ul class="list-unstyled components">
-            <li>
-              <a href="index.html">
-                  <i class="fas fa-home"></i>
-                  Home
-              </a>
-            </li>
-            <li>
-              <a href="projects.html">
-                  <i class="fas fa-folder"></i>
-                  Projects
-              </a>
-            </li>
-            <li>
-              <a href="tickets.html">
-                  <i class="fas fa-ticket"></i>
-                  Tickets
-              </a>
-            </li>
-            <li class="active">
-              <a href="adminDash.html">
-                  <i class="fas fa-user-shield"></i>
-                  Admin
-              </a>
-            </li>        
-        </ul>
-    </nav>
+          <div class="sidebar-header">
+            <h3 style="font-weight: bold; color: white"><i class="fa-solid fa-bug"></i> Bug Tracka</h3>
+            <strong><i class="fa-solid fa-bug"></i></strong>
+          </div>
+
+          <ul class="list-unstyled components">
+              <li>
+                <a href="index.html">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </a>
+              </li>
+              <li>
+                <a href="projects.html">
+                    <i class="fas fa-folder"></i>
+                    Projects
+                </a>
+              </li>
+              <li>
+                <a href="tickets.html">
+                    <i class="fas fa-ticket"></i>
+                    Tickets
+                </a>
+              </li>
+              <li class="active">
+                <a href="adminDash.html">
+                    <i class="fas fa-user-shield"></i>
+                    Admin
+                </a>
+              </li>
+              <!-- Sidebar Toggler (Sidebar) -->
+              <div class="row justify-content-md-center">
+                <div class="col-11 d-flex justify-content-center">
+                  <button type="button" id="sidebarCollapse" style="width: 40px; height: 40px; border-radius: 50%; background-color: #8841D5; border: 0; color: #C4A0EA;">
+                    <i class="fa-solid fa-align-left fa-sm" style="width: 40px; padding-right: 10px;"></i>
+                  </button>
+                </div>
+              </div>           
+          </ul>
+      </nav>
 
       
 
@@ -70,7 +83,6 @@
 
           <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
               <div class="container-fluid">
-                <h1 style="font-weight: bold; color:#6A11CB"><i class="fa-solid fa-bug" style="color:#6A11CB;"></i> Bug Tracka</h1>
 
                   <!-- Topbar Navbar -->
                   <ul class="navbar-nav ml-auto">
@@ -193,7 +205,7 @@
                 <!-- Content Row -->
                 <div class="row">
                   <!-- User List Card -->
-                  <div class="col-xl-12 col-md-6 mb-1">
+                  <div class="col-xl-12 col-md-6 mb-1 p-0" style="margin-left: 13px;">
                       <div class="card shadow mb-4">
                           <div class="card-body" style="height: 250px;">
                             <div class="table-responsive my-custom-scrollbar">

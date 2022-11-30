@@ -19,6 +19,8 @@
             });
         });
     </script>
+    <!-- Firebase Scripts -->
+    <script type="module" src="js/fBaseDashboard.js"></script>
     <!-- Chart JS Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- CSS Reference -->
@@ -102,56 +104,7 @@
                   </form>
                   <!-- Topbar Navbar -->
                   <ul class="navbar-nav ml-auto">
-                    <!-- Nav Item - Alerts -->
-                    <li class="nav-item dropdown no-arrow mx-1">
-                      <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fas fa-bell fa-fw"></i>
-                          <!-- Counter - Alerts -->
-                          <span class="badge badge-danger badge-counter">3+</span>
-                      </a>
-                      <!-- Dropdown - Alerts -->
-                      <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                          aria-labelledby="alertsDropdown">
-                          <h6 class="dropdown-header">
-                              Alerts Center
-                          </h6>
-                          <a class="dropdown-item d-flex align-items-center" href="#">
-                              <div class="mr-3">
-                                  <div class="icon-circle bg-primary">
-                                      <i class="fas fa-file-alt text-white"></i>
-                                  </div>
-                              </div>
-                              <div>
-                                  <div class="small text-gray-500">December 12, 2019</div>
-                                  <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                              </div>
-                          </a>
-                          <a class="dropdown-item d-flex align-items-center" href="#">
-                              <div class="mr-3">
-                                  <div class="icon-circle bg-success">
-                                      <i class="fas fa-donate text-white"></i>
-                                  </div>
-                              </div>
-                              <div>
-                                  <div class="small text-gray-500">December 7, 2019</div>
-                                  $290.29 has been deposited into your account!
-                              </div>
-                          </a>
-                          <a class="dropdown-item d-flex align-items-center" href="#">
-                              <div class="mr-3">
-                                  <div class="icon-circle bg-warning">
-                                      <i class="fas fa-exclamation-triangle text-white"></i>
-                                  </div>
-                              </div>
-                              <div>
-                                  <div class="small text-gray-500">December 2, 2019</div>
-                                  Spending Alert: We've noticed unusually high spending for your account.
-                              </div>
-                          </a>
-                          <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                      </div>
-                    </li>
+                    
                     <!-- Nav Item - Messages -->
                     <li class="nav-item dropdown no-arrow mx-1">
                       <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
@@ -267,77 +220,78 @@
             <!-- Content Row -->
             <div class="row">
 
-                <!-- Active Projects Card -->
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card shadow h-100 py-2" style="background-color: #6A11CB;">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-s font-weight-bold text-uppercase mb-1" style="color: white;">
-                                        Active Projects</div>
-                                    <div class="h5 mb-0 font-weight-bold" style="color: white;">1</div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-vial fa-2x" style="color: white;"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Total Tickets Card -->
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card shadow h-100 py-2" style="background-color: #6C747B;">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-s font-weight-bold text-uppercase mb-1"  style="color: white;">
-                                        Total Tickets</div>
-                                    <div class="h5 mb-0 font-weight-bold" style="color: white;">3</div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-layer-group fa-2x" style="color: white;"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Unassigned Tickets Card -->
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card shadow h-100 py-2" style="background-color: #FFC107">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-s font-weight-bold text-uppercase" style="color: white;">Unassigned Tickets
+                    <!-- Active Projects Card -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card shadow h-100 py-2" style="background-color: #6A11CB;">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-s font-weight-bold text-uppercase mb-1" style="color: white;">
+                                            Active Projects</div>
+                                        <div class="h5 mb-0"><p id="activeProjectsDashCard" style="color: white; font-weight: bold;">1</p></div>
                                     </div>
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col-auto">
-                                            <div class="h5 mb-0 font-weight-bold" style="color: white;">3</div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-vial fa-2x" style="color: white;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Total Tickets Card -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card shadow h-100 py-2" style="background-color: #6C747B;">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-s font-weight-bold text-uppercase mb-1"  style="color: white;">
+                                            Total Tickets</div>
+                                        <div class="h5 mb-0"><p id="totalTicketsDashCard" style="color: white; font-weight: bold;">3</p></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-layer-group fa-2x" style="color: white;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Unassigned Tickets Card -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card shadow h-100 py-2" style="background-color: #FFC107">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-s font-weight-bold text-uppercase" style="color: white;">Unassigned Tickets
                                         </div>
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-auto">
+                                                <div class="h5 mb-0"><p id="unassignedTicketsDashCard" style="color: white; font-weight: bold;">1</p></div>
+                                            </div>
 
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-exclamation fa-2x" style="color: white;"></i>
+                                    <div class="col-auto">
+                                        <i class="fas fa-exclamation fa-2x" style="color: white;"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Analytics Card -->
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card shadow h-100 py-2" style="background-color: #35393F">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-s font-weight-bold text-uppercase mb-1" style="color: white;">
-                                        Analytics</div>
-                                    <div class="h5 mb-0 font-weight-bold" style="color: white;">0</div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-chart-line fa-2x" style="color: white;"></i>
+                    <!-- Analytics Card -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card shadow h-100 py-2" style="background-color: #35393F">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-s font-weight-bold text-uppercase mb-1" style="color: white;">
+                                            Analytics</div>
+                                        <div class="h5 mb-0"><p id="analyticsDashCard" style="color: white; font-weight: bold;">0</p></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-chart-line fa-2x" style="color: white;"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>

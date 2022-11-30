@@ -14,23 +14,12 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-console.log('initializing firebase');
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const database = getDatabase(app);
 const dbRef = getDatabase();
 
 //---------------------------------------------------PROJECT SYSTEM----------------------------------------------------------------
-
-async function populateProjArray(){
-  const snapshot = await get(ref(dbRef, 'projects'));
-  var projArray = [];
-
-  snapshot.forEach(childSnapshot=>{
-    projArray.push(childSnapshot.val());
-  });
-  return projArray;
-}
 
 //Project Table Printing Function
 async function projectListStartUp(){
@@ -51,12 +40,12 @@ async function projectListStartUp(){
 
     let template = `
       <tr id="T${i}">
-        <td><p style="margin: 0; font-weight: bold; color: #35393F">${projArray[i].title}</p></td>
+        <td><p style="font-size: clamp(0.5rem, 0.8vw, 1rem);margin: 0; font-weight: bold; color: #35393F">${projArray[i].title}</p></td>
         <td>${printProjPriority}</td>
-        <td><button disabled style="font-size: 12px; background-color: #00000000; border: solid; border-color: #1cc88a; color:#1cc88a; border-radius:3px; text-align:center; border-width: 1px;">${projArray[i].start}</button></td>
-        <td><button disabled style="font-size: 12px; background-color: #00000000; border: solid; border-color: #e74a3b; color:#e74a3b; border-radius:3px; text-align:center; border-width: 1px;">${projArray[i].end}</button></td>
-        <td>${projArray[i].team}</td>
-        <td class="text-right"><a id="a edit tag" href="#" data-toggle="modal" data-target="#projectEditModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="editProjectBtnP${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-pen" style="color: #858585;"></i></button></a><button id="deleteProjectP${i}" style="margin-left: 2px; margin-right: 2px; font-size: 12px; background-color: #00000000; border: solid; border-color: #E74A3B; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-trash" style="color: #E74A3B;"></i></button></td>
+        <td><button disabled style="font-size: clamp(5px, 0.8vw, 10px); background-color: #00000000; border: solid; border-color: #1cc88a; color:#1cc88a; border-radius:3px; text-align:center; border-width: 1px;">${projArray[i].start}</button></td>
+        <td><button disabled style="font-size: clamp(5px, 0.8vw, 10px); background-color: #00000000; border: solid; border-color: #e74a3b; color:#e74a3b; border-radius:3px; text-align:center; border-width: 1px;">${projArray[i].end}</button></td>
+        <td><p style="margin-top: 2px;font-size: clamp(5px, 0.8vw, 19px);">${projArray[i].team}</p></td>
+        <td class="text-right"><a id="a view tag" href="#" data-toggle="modal" data-target="#ticketDescModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="viewProjectP${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #1F9EAE; color:#1F9EAE; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-eye" style="color: #1F9EAE;"></i></button></a><a id="a edit tag" href="#" data-toggle="modal" data-target="#projectViewModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="editProjectBtnP${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-pen" style="color: #858585;"></i></button></a><button id="deleteProjectP${i}" style="margin-left: 2px; margin-right: 2px; font-size: 12px; background-color: #00000000; border: solid; border-color: #E74A3B; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-trash" style="color: #E74A3B;"></i></button></td>
       </tr>`
       projectTable.innerHTML += template;
   }
@@ -134,7 +123,6 @@ async function editProject(ProjTitle, ProjStart, ProjEnd, ProjPriority, ProjTeam
     let value = data;
     return value;
   }
-  console.log("editProjectIndex: " + editProjectIndex)
   let projTitleOG = projArray[editProjectIndex].title;
   let projStartOG = projArray[editProjectIndex].start;
   let projEndOG = projArray[editProjectIndex].end;
@@ -247,7 +235,6 @@ function ticketDistributionChartSetup(){
 
 
 var projArray = await populateProjArray();
-console.log(projArray)
 
 let projectTable = document.getElementById('projectDataTable');
 await projectListStartUp();
@@ -260,3 +247,57 @@ await editProjBtnSetup();
 let projChartVals = [];
 ticketDistributionChartSetup()
 export {projChartVals}
+
+//--------------------------------------------------------TOP OF DASHBOARD SYSTEM------------------------------------------------------------
+//Ticket Array Populating
+async function populateTixArray(){
+  const snapshot = await get(ref(dbRef, 'tickets'));
+  var tixArray = [];
+
+  snapshot.forEach(childSnapshot=>{
+    tixArray.push(childSnapshot.val());
+  });
+  return tixArray;
+}
+
+//User Array Populating
+async function populateUserArray(){
+  const snapshot = await get(ref(dbRef, 'users'));
+  var userArray = [];
+
+  snapshot.forEach(childSnapshot=>{
+    userArray.push(childSnapshot.val());
+  });
+  return userArray;
+}
+
+//Project Array Populating
+async function populateProjArray(){
+  const snapshot = await get(ref(dbRef, 'projects'));
+  var projArray = [];
+
+  snapshot.forEach(childSnapshot=>{
+    projArray.push(childSnapshot.val());
+  });
+  return projArray;
+}
+
+//Dashcard Values Setup
+function dashCardValues(){
+  document.getElementById('activeProjectsDashCard').innerHTML = projArray.length;
+  document.getElementById('totalTicketsDashCard').innerHTML = tixArray.length;
+  document.getElementById('analyticsDashCard').innerHTML = 0;
+  var unassignedTixCount = 0;
+  for(let i = 0; i<tixArray.length; i++){
+    if(tixArray[i].dev == "tbd"){
+      unassignedTixCount++;
+    }
+  }
+  document.getElementById('unassignedTicketsDashCard').innerHTML = unassignedTixCount;
+}
+
+const tixArray = await populateTixArray();
+
+const userArray = await populateUserArray();
+
+dashCardValues();

@@ -5,129 +5,104 @@
       "id": "0",
       "priority": "high",
       "start": "2022-11-19",
-      "team": "Coder Jokers",
+      "team": "Coder Monkeys",
       "title": "Build a Bug Tracker"
     },
     "P1": {
       "end": "2022-12-28",
       "id": "1",
-      "priority": "mid",
+      "priority": "high",
       "start": "2022-12-01",
-      "team": "Coder Jokers",
+      "team": "Coder Monkeys",
       "title": "Build a Portfolio"
     },
     "P2": {
       "end": "2023-02-12",
       "id": "2",
-      "priority": "low",
+      "priority": "high",
       "start": "2022-11-23",
-      "team": "Coder Monkeys",
+      "team": "Coder Jokers",
       "title": "Build a Web Scraper"
     }
   },
   "tickets": {
-    "T0": {
-      "date": "2022-11-24",
-      "desc": "Database still hasn't been set up yet",
-      "dev": "tbd",
+    "T1669756215167": {
+      "date": "2022-10-2 @ 16:10:15",
+      "desc": "Fix the ticket id generation, from random number to a ordered number",
+      "dev": "Michael Vanditch",
+      "id": "1669756215167",
+      "pid": "0",
       "priority": "high",
       "status": "done",
-      "title": "Bug Tracker Ticket 1"
+      "title": "Bug Tracker Ticket 1",
+      "submitter" : "Demo Submitter",
+      "lastupdate" : "never"
     },
-    "T1": {
-      "date": "2022-11-23",
-      "desc": "Develop a Demo Project Manager login",
-      "dev": "tbd",
-      "id": "1",
-      "priority": "mid",
-      "status": "old",
-      "title": "Bug Tracker Ticket 2"
+    "T1669756225408": {
+      "date": "2022-10-2 @ 16:10:25",
+      "desc": "Create a more indepth view ticket/project page",
+      "dev": "Michael Vanditch",
+      "id": "1669756225408",
+      "pid": "0",
+      "priority": "high",
+      "status": "new",
+      "title": "Bug Tracker Ticket 2",
+      "submitter" : "Demo Submitter",
+      "lastupdate" : "never"
     },
-    "T2": {
-      "date": "2022-11-26",
-      "desc": "Come up with basic portfolio design",
-      "dev": "tbd",
-      "id": "2",
-      "priority": "low",
-      "status": "old",
-      "title": "Portfolio Ticket 1"
-    },
-    "T26838": {
-      "date": "2022-11-29",
-      "desc": "Set up firebase for Inbox page",
-      "dev": "tbd",
-      "id": 26838,
+    "T1669767457952": {
+      "date": "2022-10-2 @ 19:17:37",
+      "desc": "change the order of the ticket building to most recent first",
+      "dev": "Michael Vanditch",
+      "id": "1669767457952",
+      "pid": "0",
       "priority": "high",
       "status": "done",
-      "title": "Bug Tracker Ticket 5"
-    },
-    "T45663": {
-      "date": "2022-11-28",
-      "desc": "Set up firebase for Projects page",
-      "dev": "tbd",
-      "id": 45663,
-      "priority": "high",
-      "status": "done",
-      "title": "Bug Tracker Ticket 3"
-    },
-    "T7548": {
-      "date": "2022-11-28",
-      "desc": "Set up firebase for Admin page",
-      "dev": "tbd",
-      "priority": "high",
-      "status": "done",
-      "title": "Bug Tracker Ticket 4"
-    },
-    "T97343": {
-      "date": "2022-11-29",
-      "desc": "Finish setting up firebase for the dashboard",
-      "dev": "tbd",
-      "id": 97343,
-      "priority": "high",
-      "status": "done",
-      "title": "Bug Tracker Ticket 6"
+      "title": "Bug Tracker Ticket 3",
+      "submitter" : "Demo Submitter",
+      "lastupdate" : "never"
     }
   },
   "users": {
     "U0": {
       "id": "0",
       "name": "Ashlyn Richard",
-      "projects": "0",
       "role": "Project Manager",
       "team": "none"
     },
     "U1": {
       "id": "1",
       "name": "Demo Admin",
-      "projects": "0",
       "role": "Administrator",
       "team": "none"
     },
     "U2": {
       "id": "2",
       "name": "Demo Dev",
-      "projects": "2",
       "role": "Developer",
       "team": "Coder Jokers"
     },
     "U3": {
       "id": "3",
-      "name": "John Doe",
-      "projects": "1",
+      "name": "Michael Vanditch",
       "role": "Developer",
       "team": "Coder Monkeys"
     },
     "U4": {
       "id": "4",
-      "name": "Jane Doe",
-      "projects": "0",
-      "role": "Submitter",
-      "team": "none"
+      "name": "Demo Submitter",
+      "role": "Developer",
+      "team": "Coder Monkeys"
     },
     "U5": {
       "id": "5",
+      "name": "Jane Doe",
+      "role": "Submitter",
+      "team": "none"
+    },
+    "U6": {
+      "id": "6",
       "name": "Samson Mercer",
-      "projects": "0",
       "role": "Submitter",
       "team": "None"
     }

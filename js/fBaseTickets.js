@@ -21,28 +21,11 @@ const database = getDatabase(app);
 const dbRef = getDatabase();
 
 //---------------------------------------------------TICKET SYSTEM----------------------------------------------------------------
-async function populateTixArray(){
-  const snapshot = await get(ref(dbRef, 'tickets'));
-  var tixArray = [];
-
-  snapshot.forEach(childSnapshot=>{
-    tixArray.push(childSnapshot.val());
-  });
-  return tixArray;
-}
-var tixArray = await populateTixArray();
-console.log("Array Length: " + tixArray.length)
-let tixChartVals = [];
-
-
-let addTicketBtn = document.getElementById('addTicketBtn');
-let ticketTable = document.getElementById('ticketDataTable');
-var editTicketIndex = 0;
 //Ticket Table Printing Function
 async function ticketListStartUp(){
   console.log("Building tickets...")
 
-  for (var i = 0; i<tixArray.length; i++){
+  for (var i = tixArray.length-1; i>=0; i--){
 
     let printDev = "";
     let printStatus = "";
@@ -80,30 +63,56 @@ async function ticketListStartUp(){
     ticketTable.innerHTML += template;
   }
 }
+var projectSelection = document.getElementById('projectSelectAdd');
+
+function buildSelectProjectAdd(){
+  console.log("Building tickets...")
+
+  for (var i = 0; i<projArray.length; i++){
+
+    let template = `
+    <option>${projArray[i].title}</option>`
+      projectSelection.innerHTML += template;
+  }
+
+}
 
 $("#addTicketForm").submit(function(e) {
-  //e.preventDefault();
+  e.preventDefault();
   var addedTitle = document.getElementById('titleAdd').value;
   var addedDesc = document.getElementById('descAdd').value;
   var addedStatus = document.getElementById('statusAdd').value.toLowerCase();
   var addedPriority = document.getElementById('priorityAdd').value.toLowerCase();
-  var addedDate = document.getElementById('dateAdd').value;
-  addTicket(addedTitle, addedDesc, addedStatus, addedPriority, addedDate);
+  var selectedProjTitle = document.getElementById('projectSelectAdd').value;
+  var selectedProjId = 0;
+  for(let i=0;i<projArray.length;i++){
+    if(projArray[i].title == selectedProjTitle){
+      selectedProjId = projArray[i].id;
+    }
+  }
+  var newTicketID = Date.now();
+
+  addTicket(addedTitle, addedDesc, addedStatus, addedPriority, selectedProjId, newTicketID);
 });
-function addTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority, ticketDate) {
-  let randomIdGen = Math.floor(Math.random() * 99999)
-  if(ticketDate == "" || ticketDesc == "" || ticketTitle == ""){
+function addTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority, projId, ticketID) {
+  if(ticketDesc == "" || ticketTitle == ""){
     alert("Incomplete data, ticket was not added");
     return 0;
   }
-  set(ref(dbRef, 'tickets/T' + randomIdGen), {
-      date: ticketDate,
+  var currentdate = new Date();
+  var datetime =currentdate.getFullYear() + "-" + currentdate.getMonth() 
+  + "-" + currentdate.getDay() + " @ " 
+  + currentdate.getHours() + ":" 
+  + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+  set(ref(dbRef, 'tickets/T' + ticketID), {
+      date: datetime,
       desc: ticketDesc,
       dev : "tbd",
       priority : ticketPriority,
       status : ticketStatus,
       title : ticketTitle,
-      id : randomIdGen.toString()
+      id : ticketID.toString(),
+      pid : projId.toString()
   });
 }
 
@@ -117,7 +126,6 @@ function editTixBtnSetup(){
   function getEditTicketIndex(){ //transfering desc value to modal body paragraph 
     editTicketIndex = event.target.parentElement.id;
     editTicketIndex = editTicketIndex.slice(14,15)
-    console.log(editTicketIndex);
   };
 
   $("#editTicketForm").submit(function(e) {
@@ -142,6 +150,7 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
   let ticketDescOG = tixArray[editTicketIndex].desc;
   let ticketDateOG = tixArray[editTicketIndex].date;
   let ticketID = tixArray[editTicketIndex].id;
+  let ticketPID = tixArray[editTicketIndex].pid;
   if(ticketTitle == "" && ticketDesc == "" && ticketDate == ""){
     console.log("0 0 0");
     set(ref(dbRef, 'tickets/T' + tixArray[editTicketIndex].id), {
@@ -151,7 +160,8 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
       priority : ticketPriority,
       status : ticketStatus,
       title : ticketTitleOG,
-      id : ticketID
+      id : ticketID,
+      pid : ticketPID
     });
   }
   else if(ticketTitle == "" && ticketDesc == "" && ticketDate != ""){
@@ -163,7 +173,8 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
       priority : ticketPriority,
       status : ticketStatus,
       title : ticketTitleOG,
-      id : ticketID
+      id : ticketID,
+      pid : ticketPID
     });
   }
   else if(ticketTitle == "" && ticketDesc != "" && ticketDate == ""){
@@ -175,7 +186,8 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
       priority : ticketPriority,
       status : ticketStatus,
       title : ticketTitleOG,
-      id : ticketID
+      id : ticketID,
+      pid : ticketPID
     });
   }
   else if(ticketTitle == "" && ticketDesc != "" && ticketDate != ""){
@@ -187,7 +199,8 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
       priority : ticketPriority,
       status : ticketStatus,
       title : ticketTitleOG,
-      id : ticketID
+      id : ticketID,
+      pid : ticketPID
     });
   }
   else if(ticketTitle != "" && ticketDesc == "" && ticketDate == ""){
@@ -199,7 +212,8 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
       priority : ticketPriority,
       status : ticketStatus,
       title : ticketTitle,
-      id : ticketID
+      id : ticketID,
+      pid : ticketPID
     });
   }
   else if(ticketTitle != "" && ticketDesc == "" && ticketDate != ""){
@@ -211,7 +225,8 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
       priority : ticketPriority,
       status : ticketStatus,
       title : ticketTitle,
-      id : ticketID
+      id : ticketID,
+      pid : ticketPID
     });
   }
   else if(ticketTitle != "" && ticketDesc != "" && ticketDate == ""){
@@ -223,7 +238,8 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
       priority : ticketPriority,
       status : ticketStatus,
       title : ticketTitle,
-      id : ticketID
+      id : ticketID,
+      pid : ticketPID
     });
   }
   else{
@@ -235,7 +251,8 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
       priority : ticketPriority,
       status : ticketStatus,
       title : ticketTitle,
-      id : ticketID
+      id : ticketID,
+      pid : ticketPID
     });
   }
 }
@@ -250,8 +267,17 @@ async function viewTixBtnSetup(){
   function read_ticket_desc(){ //transfering desc value to modal body paragraph 
     var ticketIndex = event.target.parentElement.parentElement.parentElement.parentElement.id;
     ticketIndex = ticketIndex.slice(1,2)
-    console.log("ticketIndex: " + ticketIndex)
-    document.getElementById("ticketModalBodyText").innerHTML = tixArray[ticketIndex].desc;
+
+    document.getElementById("ticketDescriptionHeader").innerHTML = ("Details for Ticket #" + tixArray[ticketIndex].id);
+    document.getElementById("ticketDescriptionSectionTitle").innerHTML = tixArray[ticketIndex].title;
+    document.getElementById("ticketDescriptionSectionDesc").innerHTML = tixArray[ticketIndex].desc;
+    document.getElementById("ticketDescriptionSectionDev").innerHTML = tixArray[ticketIndex].dev;
+    document.getElementById("ticketDescriptionSectionSubmitter").innerHTML = tixArray[ticketIndex].submitter;
+    document.getElementById("ticketDescriptionSectionProject").innerHTML = tixArray[ticketIndex].pid;
+    document.getElementById("ticketDescriptionSectionPriority").innerHTML = tixArray[ticketIndex].priority;
+    document.getElementById("ticketDescriptionSectionStatus").innerHTML = tixArray[ticketIndex].status;
+    document.getElementById("ticketDescriptionSectionLastUpdated").innerHTML = tixArray[ticketIndex].lastupdate;
+    document.getElementById("ticketDescriptionSectionCreated").innerHTML = tixArray[ticketIndex].date;
   };
 }
 
@@ -265,13 +291,13 @@ async function deleteTixBtnSetup(){
   function deleteTicket(){ //transfering desc value to modal body paragraph 
     var ticketIndex = event.target.parentElement.parentElement.parentElement.id;
     ticketIndex = ticketIndex.slice(1,2)
-    console.log("Deleting ticket T" + tixArray[ticketIndex].id)
     alert("Deleting ticket T" + tixArray[ticketIndex].id)
     remove(ref(dbRef, 'tickets/T' + tixArray[ticketIndex].id));
     location.reload();
   };
 }
 
+//building available dev list for assign dev button
 async function assignDevBtnSetup(){
   console.log("Setting up dev assignment buttons...");
   for (var i = 0; i<tixArray.length; i++){
@@ -281,25 +307,35 @@ async function assignDevBtnSetup(){
   function getEditTicketIndex(){ //transfering desc value to modal body paragraph 
     let availableDevSelect = document.getElementById('availableDevSelect');
     editTicketIndex = event.target.parentElement.parentElement.id;
-    editTicketIndex = editTicketIndex.slice(1,2)
+    editTicketIndex = editTicketIndex.slice(6,7)
     console.log("assigning new dev to " + editTicketIndex);
-    for (let i = 0; i<tixArray.length; i++){
-      let template = `<option>${tixArray[i].dev}</option>`;
+    for (let i = 0; i<devArray.length; i++){
+      let template = `<option>${devArray[i].name}</option>`;
       availableDevSelect.innerHTML += template;
     }
-    /*
-    set(ref(dbRef, 'tickets/T' + tixArray[editTicketIndex].id), {
-      date: tixArray[editTicketIndex].date,
-      desc: tixArray[editTicketIndex].desc,
-      dev : "misha",
-      priority : tixArray[editTicketIndex].priority,
-      status : tixArray[editTicketIndex].status,
-      title : tixArray[editTicketIndex].title
-    });
-    location.reload();
-    */
   };
 }
+
+//assign ticket dev button functionality
+$("#assignDevForm").submit(function(e) {
+  //e.preventDefault();
+  var edittedTixDev = document.getElementById('availableDevSelect').value;
+  editTicketDev(edittedTixDev)
+});
+async function editTicketDev(ticketDev) {
+  set(ref(dbRef, 'tickets/T' + tixArray[editTicketIndex].id), {
+    date: tixArray[editTicketIndex].date,
+    desc: tixArray[editTicketIndex].desc,
+    dev : ticketDev,
+    priority : tixArray[editTicketIndex].priority,
+    status : tixArray[editTicketIndex].status,
+    title : tixArray[editTicketIndex].title,
+    id : tixArray[editTicketIndex].id,
+    pid : tixArray[editTicketIndex].pid
+  });
+}
+
+//getting values for the ticket distribution chart
 function ticketDistributionChartSetup(){
   tixChartVals = {low: 0, mid: 0, high: 0};
   for (let i = 0; i<tixArray.length; i++){
@@ -313,17 +349,104 @@ function ticketDistributionChartSetup(){
     if(priority == "low"){
       tixChartVals.low++;
     }
-    console.log(tixChartVals)
   }
 }
 
+
+
 //---------------------------------------------------FUNCTION CALLING----------------------------------------------------------------
+//Ticket Array Populating
+async function populateTixArray(){
+  const snapshot = await get(ref(dbRef, 'tickets'));
+  var tixArray = [];
+
+  snapshot.forEach(childSnapshot=>{
+    tixArray.push(childSnapshot.val());
+  });
+  return tixArray;
+}
+var tixArray = await populateTixArray();
+
+//Project Array Populating
+async function populateProjArray(){
+  const snapshot = await get(ref(dbRef, 'projects'));
+  var projArray = [];
+
+  snapshot.forEach(childSnapshot=>{
+    projArray.push(childSnapshot.val());
+  });
+  return projArray;
+}
+
+//User Array Populating
+async function populateUserArray(){
+  const snapshot = await get(ref(dbRef, 'users'));
+  var userArray = [];
+
+  snapshot.forEach(childSnapshot=>{
+    userArray.push(childSnapshot.val());
+  });
+  return userArray;
+}
+
+
+let addTicketBtn = document.getElementById('addTicketBtn');
+let ticketTable = document.getElementById('ticketDataTable');
+var editTicketIndex = 0;
+let tixChartVals = [];
+
 
 await ticketListStartUp();
 await editTixBtnSetup();
 await viewTixBtnSetup();
 await deleteTixBtnSetup();
+
+
+async function populateAvailDevArray(){
+  const snapshot = await get(ref(dbRef, 'users'));
+  var devArray = [];
+  var tmp = [];
+
+  snapshot.forEach(childSnapshot=>{
+    devArray.push(childSnapshot.val());
+  });
+  for (let i = 0; i<devArray.length; i++){
+    if(devArray[i].role == 'Developer'){
+      tmp.push(devArray[i]);
+    }
+  }
+  devArray = tmp;
+
+  return devArray;
+}
+var devArray = await populateAvailDevArray();
 await assignDevBtnSetup(); //need to setup the members list first
+
+
 
 ticketDistributionChartSetup()
 export {tixChartVals}
+
+
+//--------------------------------------------------------TOP OF DASHBOARD SYSTEM------------------------------------------------------------
+
+function dashCardValues(){
+  document.getElementById('activeProjectsDashCard').innerHTML = projArray.length;
+  document.getElementById('totalTicketsDashCard').innerHTML = tixArray.length;
+  document.getElementById('analyticsDashCard').innerHTML = 0;
+  var unassignedTixCount = 0;
+  for(let i = 0; i<tixArray.length; i++){
+    if(tixArray[i].dev == "tbd"){
+      unassignedTixCount++;
+    }
+  }
+  document.getElementById('unassignedTicketsDashCard').innerHTML = unassignedTixCount;
+}
+
+const projArray = await populateProjArray();
+
+const userArray = await populateUserArray();
+
+buildSelectProjectAdd();
+
+dashCardValues();

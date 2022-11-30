@@ -14,7 +14,6 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-console.log('initializing firebase');
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const database = getDatabase(app);
@@ -53,7 +52,7 @@ async function usersListStartUp(){
     let template = `
       <tr>
         <td><p style="margin: 0; font-weight: bold; color: #35393F">${userArray[i].name}</p></td>
-        <td class="text-center"><p style="margin: 0; font-weight: bold; color: #35393F">${userArray[i].projects}</p></td>
+        <td><p style="margin: 0; color: #35393F">${userArray[i].team}</p></td>
         <td class="text-center">${printRole}</td>
         <td class="text-end">
         <a href="#" data-toggle="modal" data-target="#userEditModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="userEditBtnU${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-pen" style="color: #858585;"></i></button></a>
@@ -63,9 +62,9 @@ async function usersListStartUp(){
   }
 }
 
-//Edit Ticket Functionality
+//Edit User Functionality
 function editUserBtnSetup(){
-  console.log("Setting up edit buttons...");
+  console.log("Setting up user edit buttons...");
   for (var i = 0; i<userArray.length; i++){
     let userEditBtnIndex = i;
     document.getElementById('userEditBtnU' + i).addEventListener("click", getEditUserIndex);
@@ -73,7 +72,6 @@ function editUserBtnSetup(){
   function getEditUserIndex(){ //transfering desc value to modal body paragraph 
     userEditBtnIndex = event.target.parentElement.id;
     userEditBtnIndex = userEditBtnIndex.slice(12,13)
-    console.log(userEditBtnIndex);
   };
   $("#editUserForm").submit(function(e) {
     //e.preventDefault();
@@ -122,3 +120,45 @@ await usersListStartUp();
 
 var userEditBtnIndex = 0;
 editUserBtnSetup();
+
+
+//--------------------------------------------------------TOP OF DASHBOARD SYSTEM------------------------------------------------------------
+async function populateTixArray(){
+  const snapshot = await get(ref(dbRef, 'tickets'));
+  var tixArray = [];
+
+  snapshot.forEach(childSnapshot=>{
+    tixArray.push(childSnapshot.val());
+  });
+  return tixArray;
+}
+
+async function populateProjArray(){
+  const snapshot = await get(ref(dbRef, 'projects'));
+  var projArray = [];
+
+  snapshot.forEach(childSnapshot=>{
+    projArray.push(childSnapshot.val());
+  });
+  return projArray;
+}
+
+function dashCardValues(){
+  document.getElementById('activeProjectsDashCard').innerHTML = projArray.length;
+  document.getElementById('totalTicketsDashCard').innerHTML = tixArray.length;
+  document.getElementById('analyticsDashCard').innerHTML = 0;
+  var unassignedTixCount = 0;
+  for(let i = 0; i<tixArray.length; i++){
+    if(tixArray[i].dev == "tbd"){
+      unassignedTixCount++;
+    }
+  }
+  document.getElementById('unassignedTicketsDashCard').innerHTML = unassignedTixCount;
+  
+}
+
+const tixArray = await populateTixArray();
+
+const projArray = await populateProjArray();
+
+dashCardValues();
