@@ -115,7 +115,7 @@ async function editUser(userName, userRole, userTeam) {
 
 var userArray =  await populateUserArray();
 
-let userTable = document.getElementById('userDataTable');
+let userTable = document.getElementById('userTable-tbody');
 await usersListStartUp();
 
 var userEditBtnIndex = 0;

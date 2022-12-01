@@ -11,6 +11,7 @@
     <script src="https://kit.fontawesome.com/c06ec17f47.js" crossorigin="anonymous"></script>
     <!-- JQuery Script Tag -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    
     <!-- Sidebar Functionality -->
     <script>
         $(document).ready(function () {
@@ -56,7 +57,7 @@
               </a>
             </li>
             <li>
-              <a href="adminDash.html">
+              <a href="admindash.html">
                   <i class="fas fa-user-shield"></i>
                   Admin
               </a>
@@ -340,15 +341,12 @@
                         <div class="col-6 border-left" id="ticketCommentSection">
                             <!-- Comment Entry -->
                             <div class="font-weight-bold text-uppercase mb-1 ml-3" style="font-size: 15px; color: #35393F;">Add comment here:</div>
-                            <form>
-                                <div class="input-group">
+
+                            <form id="addCommentForm">
+                                <div class="form-group">
                                     <input type="text" id="ticketCommentAddValue" class="form-control border-1 small ml-3" style="background-color: #FFFFFF;">
-                                    <div class="input-group-append">
-                                        <button class="btn mr-3 mb-2" id="ticketCommentAddButton" type="button" style="background-color: #0D6EFD; color: #FFFFFF;">
-                                            ADD
-                                        </button>
-                                    </div>
                                 </div>
+                                <button type="submit" class="btn mr-3 mb-2" style="background-color: #0D6EFD; color: #FFFFFF;">ADD</button>
                             </form>
                             <!-- Ticket Comment Section -->
                             <div class="col">
@@ -362,37 +360,8 @@
                                                 <th class="th-sm">Created</th>
                                             </tr>
                                             </thead>
-                                            <tbody id="tickets-tbody">
-                                                <tr>
-                                                    <td>Person</td>
-                                                    <td>Message</td>
-                                                    <td>Date</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Person</td>
-                                                    <td>Message</td>
-                                                    <td>Date</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Person</td>
-                                                    <td>Message</td>
-                                                    <td>Date</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Person</td>
-                                                    <td>Message</td>
-                                                    <td>Date</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Person</td>
-                                                    <td>Message</td>
-                                                    <td>Date</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Person</td>
-                                                    <td>Message</td>
-                                                    <td>Date</td>
-                                                </tr>
+                                            <tbody id="ticketsComments-tbody">
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -604,7 +573,7 @@
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
-                      </form>
+                    </form>
                 </div>
             </div>
         </div>

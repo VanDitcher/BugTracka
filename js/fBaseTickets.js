@@ -1,6 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js";
 import { getDatabase, ref, set, child, update, remove, onValue, get } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+import { DateTime } from "https://moment.github.io/luxon/es6/luxon.min.js";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyDMwzug_6RzdZ3UVvEjtbDGedpgEHFeN4A",
@@ -78,7 +80,7 @@ function buildSelectProjectAdd(){
 }
 
 $("#addTicketForm").submit(function(e) {
-  e.preventDefault();
+  //e.preventDefault();
   var addedTitle = document.getElementById('titleAdd').value;
   var addedDesc = document.getElementById('descAdd').value;
   var addedStatus = document.getElementById('statusAdd').value.toLowerCase();
@@ -100,10 +102,7 @@ function addTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority, projId
     return 0;
   }
   var currentdate = new Date();
-  var datetime =currentdate.getFullYear() + "-" + currentdate.getMonth() 
-  + "-" + currentdate.getDay() + " @ " 
-  + currentdate.getHours() + ":" 
-  + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+  var datetime = DateTime.now().toFormat("yyyy'-'LL'-'dd' @'HH':'mm':'ss ZZZZ").toString();
   set(ref(dbRef, 'tickets/T' + ticketID), {
       date: datetime,
       desc: ticketDesc,
@@ -112,7 +111,9 @@ function addTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority, projId
       status : ticketStatus,
       title : ticketTitle,
       id : ticketID.toString(),
-      pid : projId.toString()
+      pid : projId.toString(),
+      lastupdate : "never",
+      submitter : "Demo Submitter"
   });
 }
 
@@ -151,6 +152,8 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
   let ticketDateOG = tixArray[editTicketIndex].date;
   let ticketID = tixArray[editTicketIndex].id;
   let ticketPID = tixArray[editTicketIndex].pid;
+  let ticketLastUpdate = tixArray[editTicketIndex].lastupdate;
+  let ticketSubmitter = tixArray[editTicketIndex].submitter;
   if(ticketTitle == "" && ticketDesc == "" && ticketDate == ""){
     console.log("0 0 0");
     set(ref(dbRef, 'tickets/T' + tixArray[editTicketIndex].id), {
@@ -161,7 +164,9 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
       status : ticketStatus,
       title : ticketTitleOG,
       id : ticketID,
-      pid : ticketPID
+      pid : ticketPID,
+      lastupdate : ticketLastUpdate,
+      submitter : ticketSubmitter
     });
   }
   else if(ticketTitle == "" && ticketDesc == "" && ticketDate != ""){
@@ -174,7 +179,9 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
       status : ticketStatus,
       title : ticketTitleOG,
       id : ticketID,
-      pid : ticketPID
+      pid : ticketPID,
+      lastupdate : ticketLastUpdate,
+      submitter : ticketSubmitter
     });
   }
   else if(ticketTitle == "" && ticketDesc != "" && ticketDate == ""){
@@ -187,7 +194,9 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
       status : ticketStatus,
       title : ticketTitleOG,
       id : ticketID,
-      pid : ticketPID
+      pid : ticketPID,
+      lastupdate : ticketLastUpdate,
+      submitter : ticketSubmitter
     });
   }
   else if(ticketTitle == "" && ticketDesc != "" && ticketDate != ""){
@@ -200,7 +209,9 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
       status : ticketStatus,
       title : ticketTitleOG,
       id : ticketID,
-      pid : ticketPID
+      pid : ticketPID,
+      lastupdate : ticketLastUpdate,
+      submitter : ticketSubmitter
     });
   }
   else if(ticketTitle != "" && ticketDesc == "" && ticketDate == ""){
@@ -213,7 +224,9 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
       status : ticketStatus,
       title : ticketTitle,
       id : ticketID,
-      pid : ticketPID
+      pid : ticketPID,
+      lastupdate : ticketLastUpdate,
+      submitter : ticketSubmitter
     });
   }
   else if(ticketTitle != "" && ticketDesc == "" && ticketDate != ""){
@@ -226,7 +239,9 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
       status : ticketStatus,
       title : ticketTitle,
       id : ticketID,
-      pid : ticketPID
+      pid : ticketPID,
+      lastupdate : ticketLastUpdate,
+      submitter : ticketSubmitter
     });
   }
   else if(ticketTitle != "" && ticketDesc != "" && ticketDate == ""){
@@ -239,7 +254,9 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
       status : ticketStatus,
       title : ticketTitle,
       id : ticketID,
-      pid : ticketPID
+      pid : ticketPID,
+      lastupdate : ticketLastUpdate,
+      submitter : ticketSubmitter
     });
   }
   else{
@@ -252,7 +269,9 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
       status : ticketStatus,
       title : ticketTitle,
       id : ticketID,
-      pid : ticketPID
+      pid : ticketPID,
+      lastupdate : ticketLastUpdate,
+      submitter : ticketSubmitter
     });
   }
 }
@@ -265,8 +284,9 @@ async function viewTixBtnSetup(){
     document.getElementById('viewTicketBtnT' + i).addEventListener("click", read_ticket_desc);
   };
   function read_ticket_desc(){ //transfering desc value to modal body paragraph 
-    var ticketIndex = event.target.parentElement.parentElement.parentElement.parentElement.id;
+    ticketIndex = event.target.parentElement.parentElement.parentElement.parentElement.id;
     ticketIndex = ticketIndex.slice(1,2)
+    ticketCommentTable.innerHTML = "";
 
     document.getElementById("ticketDescriptionHeader").innerHTML = ("Details for Ticket #" + tixArray[ticketIndex].id);
     document.getElementById("ticketDescriptionSectionTitle").innerHTML = tixArray[ticketIndex].title;
@@ -278,7 +298,54 @@ async function viewTixBtnSetup(){
     document.getElementById("ticketDescriptionSectionStatus").innerHTML = tixArray[ticketIndex].status;
     document.getElementById("ticketDescriptionSectionLastUpdated").innerHTML = tixArray[ticketIndex].lastupdate;
     document.getElementById("ticketDescriptionSectionCreated").innerHTML = tixArray[ticketIndex].date;
+    ticketCommentsSetup(ticketIndex);
   };
+}
+
+//ticket comment building
+function ticketCommentsSetup(ticketIndex){
+  console.log("Building ticket comments...");
+  let thisTicketComments = [];
+  for (let i = 0; i<tixCommentArray.length; i++){
+    if (tixCommentArray[i].tid == tixArray[ticketIndex].id){
+      thisTicketComments.push(tixCommentArray[i]);
+    }
+  }
+  for (var i = thisTicketComments.length-1; i>=0; i--){
+
+    let template = `
+      <tr>
+        <td>${thisTicketComments[i].commenter}</td>
+        <td>${thisTicketComments[i].message}</td>
+        <td>${thisTicketComments[i].date}</td>
+      </tr>`
+    ticketCommentTable.innerHTML += template;
+  } 
+}
+
+//Add comment to ticket button functionality
+$("#addCommentForm").submit(function(e) {
+  e.preventDefault();
+  var addedTixComment = document.getElementById('ticketCommentAddValue').value;
+  if (addedTixComment == ""){
+    alert("Not a valid ticket!")
+  }
+  else{
+    addTicketComment(addedTixComment);
+  }
+});
+async function addTicketComment(addedTixComment) {
+  let tixCommentId = Date.now()
+  let currentDate = DateTime.now().toFormat("yyyy'-'LL'-'dd' @'HH':'mm':'ss ZZZZ").toString();
+
+  set(ref(dbRef, 'ticketcomments/C' + tixCommentId), {
+    id: tixCommentId.toString(),
+    tid: tixArray[ticketIndex].id,
+    commenter : "Michael Vanditch",
+    message : addedTixComment,
+    date : currentDate.toString()
+  });
+  location.reload();
 }
 
 //Ticket Delete Btn Functionality
@@ -289,7 +356,7 @@ async function deleteTixBtnSetup(){
     document.getElementById('deleteTicketT' + i).addEventListener("click", deleteTicket);
   };
   function deleteTicket(){ //transfering desc value to modal body paragraph 
-    var ticketIndex = event.target.parentElement.parentElement.parentElement.id;
+    ticketIndex = event.target.parentElement.parentElement.parentElement.id;
     ticketIndex = ticketIndex.slice(1,2)
     alert("Deleting ticket T" + tixArray[ticketIndex].id)
     remove(ref(dbRef, 'tickets/T' + tixArray[ticketIndex].id));
@@ -331,7 +398,9 @@ async function editTicketDev(ticketDev) {
     status : tixArray[editTicketIndex].status,
     title : tixArray[editTicketIndex].title,
     id : tixArray[editTicketIndex].id,
-    pid : tixArray[editTicketIndex].pid
+    pid : tixArray[editTicketIndex].pid,
+    lastupdate : "FIx this and Add the history section",
+    submitter : tixArray[editTicketIndex].submitter
   });
 }
 
@@ -367,6 +436,18 @@ async function populateTixArray(){
 }
 var tixArray = await populateTixArray();
 
+//Ticket Array Populating
+async function populateTixCommentArray(){
+  const snapshot = await get(ref(dbRef, 'ticketcomments'));
+  var tixCommentArray = [];
+
+  snapshot.forEach(childSnapshot=>{
+    tixCommentArray.push(childSnapshot.val());
+  });
+  return tixCommentArray;
+}
+var tixCommentArray = await populateTixCommentArray();
+
 //Project Array Populating
 async function populateProjArray(){
   const snapshot = await get(ref(dbRef, 'projects'));
@@ -389,9 +470,10 @@ async function populateUserArray(){
   return userArray;
 }
 
-
+var ticketIndex = 0;
+let ticketCommentTable = document.getElementById('ticketsComments-tbody');
 let addTicketBtn = document.getElementById('addTicketBtn');
-let ticketTable = document.getElementById('ticketDataTable');
+let ticketTable = document.getElementById('tickets-tbody');
 var editTicketIndex = 0;
 let tixChartVals = [];
 

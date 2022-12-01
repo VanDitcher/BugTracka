@@ -236,7 +236,7 @@ function ticketDistributionChartSetup(){
 
 var projArray = await populateProjArray();
 
-let projectTable = document.getElementById('projectDataTable');
+let projectTable = document.getElementById('projects-tbody');
 await projectListStartUp();
 
 await deleteProjBtnSetup();
