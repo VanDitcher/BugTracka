@@ -1,8 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js";
 import { getDatabase, ref, set, child, update, remove, onValue, get } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
-import { DateTime } from "https://moment.github.io/luxon/es6/luxon.min.js";
-
+import { DateTime, Settings } from "https://moment.github.io/luxon/es6/luxon.min.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDMwzug_6RzdZ3UVvEjtbDGedpgEHFeN4A",
@@ -102,7 +101,7 @@ function addTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority, projId
     return 0;
   }
   var currentdate = new Date();
-  var datetime = DateTime.now().toFormat("yyyy'-'LL'-'dd' @'HH':'mm':'ss ZZZZ").toString();
+  var datetime = DateTime.fromISO(DateTime.now(),{zone: 'utc-5'}).toFormat("yyyy'-'LL'-'dd' @'HH':'mm':'ss ZZZZ").toString();
   set(ref(dbRef, 'tickets/T' + ticketID), {
       date: datetime,
       desc: ticketDesc,
@@ -336,7 +335,7 @@ $("#addCommentForm").submit(function(e) {
 });
 async function addTicketComment(addedTixComment) {
   let tixCommentId = Date.now()
-  let currentDate = DateTime.now().toFormat("yyyy'-'LL'-'dd' @'HH':'mm':'ss ZZZZ").toString();
+  let currentDate = DateTime.fromISO(DateTime.now(),{zone: 'utc-5'}).toFormat("yyyy'-'LL'-'dd' @'HH':'mm':'ss ZZZZ").toString();
 
   set(ref(dbRef, 'ticketcomments/C' + tixCommentId), {
     id: tixCommentId.toString(),
