@@ -25,34 +25,72 @@
       "title": "Build a Web Scraper"
     }
   },
+  "ticketchanges": {
+    "TCH1669925274769": {
+      "datechanged": "some date",
+      "id": "0",
+      "newvalue": "new",
+      "oldvalue": "done",
+      "property": "status",
+      "tid": "1669919236092"
+    },
+    "TCH1669925576842": {
+      "datechanged": "some date",
+      "id": "1",
+      "newvalue": "high",
+      "oldvalue": "low",
+      "property": "priority",
+      "tid": "1669756215167"
+    },
+    "TCH1669925609819": {
+      "datechanged": "some date",
+      "id": "2",
+      "newvalue": "Michael Vanditch",
+      "oldvalue": "tbd",
+      "property": "dev",
+      "tid": "1669767457952"
+    }
+  },
   "ticketcomments": {
-    "C1669925274769": {
+    "TC1669925274769": {
       "commenter": "Michael Vanditch",
-      "date": "2022-12-01 @15:07:54 EST",
+      "date": "2022-12-01 @15:07:54 UTC-5",
       "id": "1669925274769",
       "message": "problem was fixed using the luxon library",
       "tid": "1669919236092"
+    },
+    "TC1669925576842": {
+      "commenter": "Michael Vanditch",
+      "date": "2022-12-01 @15:12:56 UTC-5",
+      "id": "1669925576842",
+      "message": "This was fixed using date.now(), thus now we have order and uniqueness",
+      "tid": "1669756215167"
+    },
+    "TC1669925609819": {
+      "commenter": "Michael Vanditch",
+      "date": "2022-12-01 @15:13:29 UTC-5",
+      "id": "1669925609819",
+      "message": "fixed by changing the for loop to count down from the top",
+      "tid": "1669767457952"
     }
   },
   "tickets": {
     "T1669756215167": {
-      "date": "2022-11-28 @ 21:33:43 EST",
+      "date": "2022-11-28 @ 21:33:43 UTC-5",
       "desc": "Fix the ticket id generation, from random number to a ordered number",
       "dev": "Michael Vanditch",
       "id": "1669756215167",
-      "lastupdate": "never",
       "pid": "0",
       "priority": "high",
-      "status": "done",
+      "status": "new",
       "submitter": "Demo Submitter",
       "title": "Bug Tracker Ticket 1"
     },
     "T1669756225408": {
-      "date": "2022-11-29 @ 09:56:50 EST",
+      "date": "2022-11-29 @ 09:56:50 UTC-5",
       "desc": "Create a more indepth view ticket/project page",
       "dev": "Michael Vanditch",
       "id": "1669756225408",
-      "lastupdate": "never",
       "pid": "0",
       "priority": "high",
       "status": "new",
@@ -60,11 +98,10 @@
       "title": "Bug Tracker Ticket 2"
     },
     "T1669767457952": {
-      "date": "2022-11-29 @ 15:13:10 EST",
+      "date": "2022-11-29 @ 15:13:10 UTC-5",
       "desc": "change the order of the ticket building to most recent first",
       "dev": "Michael Vanditch",
       "id": "1669767457952",
-      "lastupdate": "never",
       "pid": "0",
       "priority": "high",
       "status": "done",
@@ -72,16 +109,26 @@
       "title": "Bug Tracker Ticket 3"
     },
     "T1669919236092": {
-      "date": "2022-12-01 @ 11:27:16 EST",
+      "date": "2022-12-01 @ 11:27:16 UTC-5",
       "desc": "date() function does not return the correct date, please fix",
       "dev": "Michael Vanditch",
       "id": "1669919236092",
-      "lastupdate": "FIx this and Add the history section",
       "pid": "0",
       "priority": "high",
       "status": "done",
       "submitter": "Demo Submitter",
       "title": "Bug Tracker Ticket 4"
+    },
+    "T1670351255304": {
+      "date": "2022-12-06 @13:27:35 UTC-5",
+      "desc": "some shit",
+      "dev": "tbd",
+      "id": "1670351255304",
+      "pid": "0",
+      "priority": "high",
+      "status": "new",
+      "submitter": "Demo Submitter",
+      "title": "Example Ticket"
     }
   },
   "users": {
