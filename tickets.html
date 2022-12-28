@@ -370,11 +370,12 @@
                         </div>
                     </div>
                     <div class="row">
+                        <!--Ticket History Section-->
                         <div class="col-6" id="ticketHistorySection">
                             <div class="font-weight-bold text-uppercase;" style="margin-top: 10px; font-size: 20px; color: #35393F;">Ticket History</div>
                             <div class="card shadow my-3">
                                 <div class="table-responsive my-custom-scrollbar">
-                                    <table class="table" id="ticketCommentTable" width="100%" cellspacing="0">
+                                    <table class="table" id="ticketHistoryTable" width="100%" cellspacing="0">
                                         <thead class="thead-dark">
                                         <tr>
                                             <th class="th-sm">Property</th>
@@ -399,23 +400,19 @@
                                         <tr>
                                             <th class="th-sm">File</th>
                                             <th class="th-sm">Uploader</th>
-                                            <th class="th-sm">Notes</th>
                                             <th class="th-sm">Created</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Demo File</td>
-                                                <td>Demo Dev</td>
-                                                <td>Notes</td>
-                                                <td>Date</td>
-                                            </tr>
+                                        <tbody id="ticketsFiles-tbody">
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                             <div class="mb-3 mt-3">
-                                <input class="form-control" type="file" id="ticketFileUpload">
+                                <div class="input-group-prepend">
+                                    <input class="btn" type="button" value="Upload" id="ticketFileUploadBtn" style="background-color: #0D6EFD; color: #FFFFFF;">
+                                    <input class="form-control" type="file" id="ticketUploadedFile">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -448,16 +445,12 @@
                         <div class="form-group">
                             <label for="tixStatusEdit">Status</label>
                             <select class="form-control" id="tixStatusEdit">
-                                <option>New</option>
-                                <option>Done</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="tixPriorityEdit">Priority</label>
                             <select class="form-control" id="tixPriorityEdit">
-                                <option>High</option>
-                                <option>Mid</option>
-                                <option>Low</option>
+                                
                             </select>
                         </div>
                         <div class="form-group">

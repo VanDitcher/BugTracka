@@ -1,0 +1,287 @@
+{
+  "projects": {
+    "P0": {
+      "end": "2022-12-01",
+      "id": "0",
+      "priority": "high",
+      "start": "2022-11-19",
+      "team": "Coder Monkeys",
+      "title": "Build a Bug Tracker"
+    },
+    "P1": {
+      "end": "2022-12-28",
+      "id": "1",
+      "priority": "high",
+      "start": "2022-12-01",
+      "team": "Coder Monkeys",
+      "title": "Build a Portfolio"
+    },
+    "P2": {
+      "end": "2023-02-12",
+      "id": "2",
+      "priority": "high",
+      "start": "2022-11-23",
+      "team": "Coder Jokers",
+      "title": "Build a Web Scraper"
+    }
+  },
+  "ticketchanges": {
+    "TCH1669925274769": {
+      "datechanged": "some date",
+      "id": "0",
+      "newvalue": "new",
+      "oldvalue": "done",
+      "property": "status",
+      "tid": "1669919236092"
+    },
+    "TCH1669925576842": {
+      "datechanged": "some date",
+      "id": "1",
+      "newvalue": "high",
+      "oldvalue": "low",
+      "property": "priority",
+      "tid": "1669756215167"
+    },
+    "TCH1669925609819": {
+      "datechanged": "some date",
+      "id": "2",
+      "newvalue": "Michael Vanditch",
+      "oldvalue": "tbd",
+      "property": "dev",
+      "tid": "1669767457952"
+    },
+    "TCH1670353424728": {
+      "datechanged": "2022-12-06 @14:03:44 UTC-5",
+      "id": "1670353424728",
+      "newvalue": "mid",
+      "oldvalue": "high",
+      "property": "Priority",
+      "tid": "1670351255304"
+    },
+    "TCH1670353445499": {
+      "datechanged": "2022-12-06 @14:04:05 UTC-5",
+      "id": "1670353445499",
+      "newvalue": "low",
+      "oldvalue": "mid",
+      "property": "Priority",
+      "tid": "1670351255304"
+    },
+    "TCH1670353497592": {
+      "datechanged": "2022-12-06 @14:04:57 UTC-5",
+      "id": "1670353497592",
+      "newvalue": "high, test",
+      "oldvalue": "low, sugma",
+      "property": "Priority, Title",
+      "tid": "1670351255304"
+    },
+    "TCH1670353770247": {
+      "datechanged": "2022-12-06 @14:09:30 UTC-5",
+      "id": "1670353770247",
+      "newvalue": "sugma",
+      "oldvalue": "test",
+      "property": "Title",
+      "tid": "1670351255304"
+    },
+    "TCH1672079883364": {
+      "datechanged": "2022-12-26 @13:38:03 UTC-5",
+      "id": "1672079883364",
+      "newvalue": "mid",
+      "oldvalue": "high",
+      "property": "Priority",
+      "tid": "1670351255304"
+    },
+    "TCH1672080363629": {
+      "datechanged": "2022-12-26 @13:46:03 UTC-5",
+      "id": "1672080363629",
+      "newvalue": "high",
+      "oldvalue": "mid",
+      "property": "Priority",
+      "tid": "1670351255304"
+    },
+    "TCH1672081148354": {
+      "datechanged": "2022-12-26 @13:59:08 UTC-5",
+      "id": "1672081148354",
+      "newvalue": "done",
+      "oldvalue": "new",
+      "property": "Status",
+      "tid": "1670351255304"
+    },
+    "TCH1672081246633": {
+      "datechanged": "2022-12-26 @14:00:46 UTC-5",
+      "id": "1672081246633",
+      "newvalue": "low, new",
+      "oldvalue": "high, done",
+      "property": "Priority, Status",
+      "tid": "1670351255304"
+    },
+    "TCH1672081278321": {
+      "datechanged": "2022-12-26 @14:01:18 UTC-5",
+      "id": "1672081278321",
+      "newvalue": "Demo Dev",
+      "oldvalue": "tbd",
+      "property": "Developer",
+      "tid": "1672081269692"
+    },
+    "TCH1672081396566": {
+      "datechanged": "2022-12-26 @14:03:16 UTC-5",
+      "id": "1672081396566",
+      "newvalue": "Demo Dev",
+      "oldvalue": "tbd",
+      "property": "Developer",
+      "tid": "1672081387088"
+    }
+  },
+  "ticketcomments": {
+    "TC1669925274769": {
+      "commenter": "Michael Vanditch",
+      "date": "2022-12-01 @15:07:54 UTC-5",
+      "id": "1669925274769",
+      "message": "problem was fixed using the luxon library",
+      "tid": "1669919236092"
+    },
+    "TC1669925576842": {
+      "commenter": "Michael Vanditch",
+      "date": "2022-12-01 @15:12:56 UTC-5",
+      "id": "1669925576842",
+      "message": "This was fixed using date.now(), thus now we have order and uniqueness",
+      "tid": "1669756215167"
+    },
+    "TC1669925609819": {
+      "commenter": "Michael Vanditch",
+      "date": "2022-12-01 @15:13:29 UTC-5",
+      "id": "1669925609819",
+      "message": "fixed by changing the for loop to count down from the top",
+      "tid": "1669767457952"
+    },
+    "TC1672079769415": {
+      "commenter": "Michael Vanditch",
+      "date": "2022-12-26 @13:36:09 UTC-5",
+      "id": "1672079769415",
+      "message": "Test comment",
+      "tid": "1670351255304"
+    },
+    "TC1672079829478": {
+      "commenter": "Michael Vanditch",
+      "date": "2022-12-26 @13:37:09 UTC-5",
+      "id": "1672079829478",
+      "message": "Test comment2",
+      "tid": "1670351255304"
+    },
+    "TC1672081414053": {
+      "commenter": "Michael Vanditch",
+      "date": "2022-12-26 @14:03:34 UTC-5",
+      "id": "1672081414053",
+      "message": "test",
+      "tid": "1672081387088"
+    }
+  },
+  "tickets": {
+    "T1669756215167": {
+      "date": "2022-11-28 @ 21:33:43 UTC-5",
+      "desc": "Fix the ticket id generation, from random number to a ordered number",
+      "dev": "Michael Vanditch",
+      "id": "1669756215167",
+      "pid": "0",
+      "priority": "high",
+      "status": "new",
+      "submitter": "Demo Submitter",
+      "title": "Bug Tracker Ticket 1"
+    },
+    "T1669756225408": {
+      "date": "2022-11-29 @ 09:56:50 UTC-5",
+      "desc": "Create a more indepth view ticket/project page",
+      "dev": "Michael Vanditch",
+      "id": "1669756225408",
+      "pid": "0",
+      "priority": "high",
+      "status": "new",
+      "submitter": "Demo Submitter",
+      "title": "Bug Tracker Ticket 2"
+    },
+    "T1669767457952": {
+      "date": "2022-11-29 @ 15:13:10 UTC-5",
+      "desc": "change the order of the ticket building to most recent first",
+      "dev": "Michael Vanditch",
+      "id": "1669767457952",
+      "pid": "0",
+      "priority": "high",
+      "status": "done",
+      "submitter": "Demo Submitter",
+      "title": "Bug Tracker Ticket 3"
+    },
+    "T1669919236092": {
+      "date": "2022-12-01 @ 11:27:16 UTC-5",
+      "desc": "date() function does not return the correct date, please fix",
+      "dev": "Michael Vanditch",
+      "id": "1669919236092",
+      "pid": "0",
+      "priority": "high",
+      "status": "done",
+      "submitter": "Demo Submitter",
+      "title": "Bug Tracker Ticket 4"
+    },
+    "T1670351255304": {
+      "date": "2022-12-15",
+      "desc": "nuts",
+      "dev": "Michael Vanditch",
+      "id": "1670351255304",
+      "lastupdate": "2022-12-26 @14:00:46 UTC-5",
+      "pid": "0",
+      "priority": "low",
+      "status": "new",
+      "submitter": "Demo Submitter",
+      "title": "sugma"
+    }
+  },
+  "users": {
+    "U0": {
+      "id": "0",
+      "name": "Ashlyn Richard",
+      "role": "Project Manager",
+      "team": "none"
+    },
+    "U1": {
+      "id": "1",
+      "name": "Demo Admin",
+      "role": "Administrator",
+      "team": "none"
+    },
+    "U2": {
+      "id": "2",
+      "name": "Demo Dev",
+      "role": "Developer",
+      "team": "Coder Jokers"
+    },
+    "U3": {
+      "id": "3",
+      "name": "Michael Vanditch",
+      "role": "Developer",
+      "team": "Coder Monkeys"
+    },
+    "U4": {
+      "id": "4",
+      "name": "Demo Submitter",
+      "role": "Submitter",
+      "team": "none"
+    },
+    "U5": {
+      "id": "5",
+      "name": "Jane Doe",
+      "role": "Submitter",
+      "team": "none"
+    },
+    "U6": {
+      "id": "6",
+      "name": "Samson Mercer",
+      "role": "Submitter",
+      "team": "None"
+    }
+  },
+  "ticketFiles": {
+    "TF6969420" : {
+      "fileName" : "testFile.file",
+      "uploader" : "Demo Dev",
+      "created" : "some time"
+    }
+  }
+}

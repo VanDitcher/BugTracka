@@ -1,6 +1,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js";
 import { getDatabase, ref, set, child, update, remove, onValue, get } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+import 'https://code.jquery.com/jquery-3.6.1.min.js';
+import '/node_modules/datatables.net/js/jquery.dataTables.js';
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyDMwzug_6RzdZ3UVvEjtbDGedpgEHFeN4A",
@@ -22,7 +25,7 @@ const dbRef = getDatabase();
 //---------------------------------------------------PROJECT SYSTEM----------------------------------------------------------------
 
 //Project Table Printing Function
-async function projectListStartUp(){
+function projectListStartUp(){
   console.log("Building projects...")
 
   for (var i = 0; i<projArray.length; i++){
@@ -45,7 +48,7 @@ async function projectListStartUp(){
         <td><button disabled style="font-size: clamp(5px, 0.8vw, 10px); background-color: #00000000; border: solid; border-color: #1cc88a; color:#1cc88a; border-radius:3px; text-align:center; border-width: 1px;">${projArray[i].start}</button></td>
         <td><button disabled style="font-size: clamp(5px, 0.8vw, 10px); background-color: #00000000; border: solid; border-color: #e74a3b; color:#e74a3b; border-radius:3px; text-align:center; border-width: 1px;">${projArray[i].end}</button></td>
         <td><p style="margin-top: 2px;font-size: clamp(5px, 0.8vw, 19px);">${projArray[i].team}</p></td>
-        <td class="text-right"><a id="a view tag" href="#" data-toggle="modal" data-target="#ticketDescModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="viewProjectP${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #1F9EAE; color:#1F9EAE; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-eye" style="color: #1F9EAE;"></i></button></a><a id="a edit tag" href="#" data-toggle="modal" data-target="#projectViewModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="editProjectBtnP${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-pen" style="color: #858585;"></i></button></a><button id="deleteProjectP${i}" style="margin-left: 2px; margin-right: 2px; font-size: 12px; background-color: #00000000; border: solid; border-color: #E74A3B; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-trash" style="color: #E74A3B;"></i></button></td>
+        <td class="text-right"><a href="#" id="viewProjectP${i}" data-toggle="modal" data-target="#projectViewModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="viewProjectP${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #1F9EAE; color:#1F9EAE; border-radius:3px; text-align:center; border-width: 1px;"><i id="viewProjectP${i}" class="fas fa-eye" style="color: #1F9EAE;"></i></button></a><a id="a edit tag" href="#" data-toggle="modal" data-target="#projectEditModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="editProjectBtnP${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-pen" style="color: #858585;"></i></button></a><button id="deleteProjectP${i}" style="margin-left: 2px; margin-right: 2px; font-size: 12px; background-color: #00000000; border: solid; border-color: #E74A3B; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-trash" style="color: #E74A3B;"></i></button></td>
       </tr>`
       projectTable.innerHTML += template;
   }
@@ -61,7 +64,7 @@ $("#addProjectForm").submit(function(e) {
   addProject(addedProjTitle, addedProjPriority, addedStartDate, addedEndDate, addedProjTeam);
 });
 function addProject(projTitle, projPriority, projStartDate, projEndDate, projTeam) {
-  let randomIdGen = Math.floor(Math.random() * 99999)
+  let randomIdGen = Date.now();
   if(projTitle == "" || projStartDate == "" || projEndDate == ""){
     alert("Incomplete data, project was not added");
     return 0;
@@ -101,9 +104,34 @@ function editProjBtnSetup(){
     document.getElementById('editProjectBtnP' + i).addEventListener("click", getEditProjIndex);
   };
   function getEditProjIndex(){ //transfering desc value to modal body paragraph 
+    projectPriorityEdit.innerHTML = "";
+    projTeamEdit.innerHTML = "";
     editProjectIndex = event.target.parentElement.id;
     editProjectIndex = editProjectIndex.slice(15,16)
     console.log(editProjectIndex);
+    if (projArray[editProjectIndex].team == "Coder Jokers"){
+      projTeamEdit.innerHTML+=("<option>Coder Jokers</option>");
+      projTeamEdit.innerHTML+=("<option>Coder Monkeys</option>");
+    }
+    else{
+      projTeamEdit.innerHTML+=("<option>Coder Monkeys</option>");
+      projTeamEdit.innerHTML+=("<option>Coder Jokers</option>");
+    }
+    if (projArray[editProjectIndex].priority == "high"){
+      projectPriorityEdit.innerHTML+=("<option>High</option>");
+      projectPriorityEdit.innerHTML+=("<option>Mid</option>");
+      projectPriorityEdit.innerHTML+=("<option>Low</option>");
+    }
+    else if(projArray[editProjectIndex].priority == "mid"){
+      projectPriorityEdit.innerHTML+=("<option>Mid</option>");
+      projectPriorityEdit.innerHTML+=("<option>High</option>");
+      projectPriorityEdit.innerHTML+=("<option>Low</option>");
+    }
+    else{
+      projectPriorityEdit.innerHTML+=("<option>Low</option>");
+      projectPriorityEdit.innerHTML+=("<option>Mid</option>");
+      projectPriorityEdit.innerHTML+=("<option>High</option>");
+    }
   };
 
   $("#editProjectForm").submit(function(e) {
@@ -233,22 +261,94 @@ function ticketDistributionChartSetup(){
   }
 }
 
+//Ticket View Desc Button Functionality
+async function viewProjBtnSetup(){
+  console.log("View project buttons setup...")
+  for (var i = 0; i<projArray.length; i++){
+    let projectDescIndex = i;
+    document.getElementById('viewProjectP' + i).addEventListener("click", read_project_desc);
+  };
+  function read_project_desc(){ //transfering desc value to modal body paragraph 
+    var projectIndex = (event.target.id).slice(12,13)
+    projectWorkersTable.innerHTML = "";
+    projectTicketsTable.innerHTML = "";
 
-var projArray = await populateProjArray();
+    document.getElementById("projectDescriptionHeader").innerHTML = ("Details for Project #" + projArray[projectIndex].id);
+    document.getElementById("projectDescriptionSectionTitle").innerHTML = projArray[projectIndex].title;
+    document.getElementById("projectDescriptionSectionID").innerHTML = projArray[projectIndex].id;
+    let projectPrio = projArray[projectIndex].priority
+    projectPrio = projectPrio.charAt(0).toUpperCase() + projectPrio.slice(1);
+    document.getElementById("projectDescriptionSectionPriority").innerHTML = projectPrio;
+    document.getElementById("projectDescriptionSectionTeam").innerHTML = projArray[projectIndex].team;
+    document.getElementById("projectDescriptionSectionStart").innerHTML = projArray[projectIndex].start;
+    document.getElementById("projectDescriptionSectionEnd").innerHTML = projArray[projectIndex].end;
 
-let projectTable = document.getElementById('projects-tbody');
-await projectListStartUp();
 
-await deleteProjBtnSetup();
+    projectWorkersSetup(projectIndex);
+    projectTicketsSetup(projectIndex);
+  };
+  //project worker list building
+  function projectWorkersSetup(projectIndex){
+    console.log("Building Project Workers...");
+    let thisProjectWorker = [];
+    for (let i = 0; i<userArray.length; i++){
+      if (userArray[i].team == projArray[projectIndex].team){
+        thisProjectWorker.push(userArray[i]);
+      }
+    }
+    for (var i = thisProjectWorker.length-1; i>=0; i--){
 
-var editProjectIndex = 0;
-await editProjBtnSetup();
+      let template = `
+        <tr>
+          <td>${thisProjectWorker[i].name}</td>
+          <td>${thisProjectWorker[i].role}</td>
+        </tr>`
+        projectWorkersTable.innerHTML += template;
+    }    
+  }
+  //project tickets list building
+  function projectTicketsSetup(projectIndex){
+    console.log("Building Project Tickets...");
+    let thisProjectTicket = [];
+    for (let i = 0; i<tixArray.length; i++){
+      if (tixArray[i].pid == projArray[projectIndex].id){
+        thisProjectTicket.push(tixArray[i]);
+      }
+    }
+    for (var i = thisProjectTicket.length-1; i>=0; i--){
 
-let projChartVals = [];
-ticketDistributionChartSetup()
-export {projChartVals}
+      let template = `
+        <tr>
+          <td>${thisProjectTicket[i].title}</td>
+          <td>${thisProjectTicket[i].dev}</td>
+          <td>${thisProjectTicket[i].status}</td>
+          <td>${thisProjectTicket[i].priority}</td>
+          <td>${thisProjectTicket[i].date}</td>
+          <td><a id="viewTicketinProjectDescBtnT${i}" href="#" data-toggle="modal" data-target="#projectDescTicketDescModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="viewTicketinProjectDescBtnT${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #1F9EAE; color:#1F9EAE; border-radius:3px; text-align:center; border-width: 1px;"><i id="viewTicketinProjectDescBtnT${i}" class="fas fa-eye" style="color: #1F9EAE;"></i></button></a></td>
+        </tr>`
+        projectTicketsTable.innerHTML += template;
+    }
+    function viewTixInProjectDescBtnSetup(){
+      console.log("View ticket description buttons setup...")
+      for (var i = 0; i<tixArray.length; i++){
+        let ticketDescIndex = i;
+        document.getElementById('viewTicketinProjectDescBtnT' + i).addEventListener("click", read_ticket_desc);
+      };
+      function read_ticket_desc(){ //transfering desc value to modal body paragraph 
+        console.log(event.target.id);
+        let ticketIndex = event.target.id;
+        ticketIndex = ticketIndex.slice(27,28)
+        console.log(ticketIndex);
+        projectDescTicketDesc.innerHTML = tixArray[ticketIndex].desc;
+      };
+    } 
+    if(thisProjectTicket.length > 0){
+      viewTixInProjectDescBtnSetup();
+    }
+  }
+}
 
-//--------------------------------------------------------TOP OF DASHBOARD SYSTEM------------------------------------------------------------
+
 //Ticket Array Populating
 async function populateTixArray(){
   const snapshot = await get(ref(dbRef, 'tickets'));
@@ -282,6 +382,37 @@ async function populateProjArray(){
   return projArray;
 }
 
+const tixArray = await populateTixArray();
+
+const userArray = await populateUserArray();
+
+var projArray = await populateProjArray();
+
+var projectDescTicketDesc = document.getElementById('projectDescTicketDescModalBody');
+var projectWorkersTable = document.getElementById('projWorkers-tbody');
+var projectTicketsTable = document.getElementById('projectTickets-tbody');
+let projectTable = document.getElementById('projects-tbody');
+var projectPriorityEdit = document.getElementById('projectPriorityEdit');
+var projTeamEdit = document.getElementById('projTeamEdit');
+
+projectListStartUp();
+
+$(document).ready(function() {
+  $('#projectDataTable').DataTable();
+});
+
+await deleteProjBtnSetup();
+
+var editProjectIndex = 0;
+await editProjBtnSetup();
+
+let projChartVals = [];
+ticketDistributionChartSetup()
+export {projChartVals}
+
+await viewProjBtnSetup();
+
+//--------------------------------------------------------TOP OF DASHBOARD SYSTEM------------------------------------------------------------
 //Dashcard Values Setup
 function dashCardValues(){
   document.getElementById('activeProjectsDashCard').innerHTML = projArray.length;
@@ -295,9 +426,5 @@ function dashCardValues(){
   }
   document.getElementById('unassignedTicketsDashCard').innerHTML = unassignedTixCount;
 }
-
-const tixArray = await populateTixArray();
-
-const userArray = await populateUserArray();
 
 dashCardValues();

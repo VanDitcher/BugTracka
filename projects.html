@@ -11,14 +11,7 @@
     <script src="https://kit.fontawesome.com/c06ec17f47.js" crossorigin="anonymous"></script>
     <!-- JQuery Script Tag -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    <!-- Sidebar Functionality -->
-    <script>
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            });
-        });
-    </script>
+
     <!-- Firebase -->
     <script type="module" src="js/fBaseProjects.js"></script>
     <!-- Chart JS Scripts -->
@@ -341,9 +334,7 @@
                         <div class="form-group">
                             <label for="projectPriorityEdit">Priority</label>
                             <select class="form-control" id="projectPriorityEdit">
-                                <option>High</option>
-                                <option>Mid</option>
-                                <option>Low</option>
+
                             </select>
                         </div>
                         <div class="form-group">
@@ -357,12 +348,116 @@
                         <div class="form-group">
                             <label for="projTeamEdit">Team</label>
                             <select class="form-control" id="projTeamEdit">
-                                <option>Coder Jokers</option>
-                                <option>Coder Monkeys</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                       </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Project Desc Modal-->
+    <div class="modal fade" id="projectViewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content" style="background-color: #fefefe;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="projectDescriptionHeader" style="font-size: 30px; font-weight: bold; color:#35393F;">Details for Project ####</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="row">
+                            <div class="col">
+                                <div class="font-weight-bold text-uppercase mb-1" style="font-size: 15px; color:#35393F;">Project Title</div>
+                                <div class="mb-0"><p id="projectDescriptionSectionTitle" style="margin-left: 8px; font-size: 15px; color: #35393F;">"Project Title"</p></div>
+                            </div>
+                            <div class="col">
+                                <div class="font-weight-bold text-uppercase mb-1" style="font-size: 15px; color: #35393F;">Project ID</div>
+                                <div class="mb-0"><p id="projectDescriptionSectionID" style="margin-left: 8px; font-size: 15px; color: #35393F;">"Project ID"</p></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="font-weight-bold text-uppercase mb-1" style="font-size: 15px; color: #35393F;">Project Priority</div>
+                                <div class="mb-0"><p id="projectDescriptionSectionPriority" style="margin-left: 8px; font-size: 15px; color: #35393F;">"Project Priority"</p></div>
+                            </div>
+                            <div class="col">
+                                <div class="font-weight-bold text-uppercase mb-1" style="font-size: 15px; color: #35393F;">Project Team</div>
+                                <div class="mb-0"><p id="projectDescriptionSectionTeam" style="margin-left: 8px; font-size: 15px; color: #35393F;">"Project Team"</p></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="font-weight-bold text-uppercase mb-1" style="font-size: 15px; color: #35393F;">Start Date</div>
+                                <div class="mb-0"><p id="projectDescriptionSectionStart" style="margin-left: 8px; font-size: 15px; color: #35393F;">"Project Start"</p></div>
+                            </div>
+                            <div class="col">
+                                <div class="font-weight-bold text-uppercase mb-1" style="font-size: 15px; color: #35393F;">End Date</div>
+                                <div class="mb-0"><p id="projectDescriptionSectionEnd" style="margin-left: 8px; font-size: 15px; color: #35393F;">"Project End"</p></div>
+                            </div>
+                        </div>
+                    <div class="row">
+                        <div class="col-6 border-top" id="projectWorkerSection">
+                            <div class="font-weight-bold text-uppercase;" style="margin-top: 10px; font-size: 20px; color: #35393F;">Project Workers</div>
+                            <div class="card shadow my-3">
+                                <div class="table-responsive my-custom-scrollbar">
+                                    <table class="table" id="projectWorkerTable" width="100%" cellspacing="0">
+                                        <thead class="thead-dark">
+                                        <tr>
+                                            <th class="th-sm">Name</th>
+                                            <th class="th-sm">Role</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="projWorkers-tbody">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 border-left border-top" id="projectTicketsSection">
+                            <div class="font-weight-bold text-uppercase;" style="margin-top: 10px; font-size: 20px; color: #35393F;">Tickets for this Project</div>
+                            <div class="card shadow my-3">
+                                <div class="table-responsive my-custom-scrollbar">
+                                    <table class="table" id="projectTicketTable" width="100%" cellspacing="0">
+                                        <thead class="thead-dark">
+                                        <tr>
+                                            <th class="th-sm">Title</th>
+                                            <th class="th-sm">Developer</th>
+                                            <th class="th-sm">Status</th>
+                                            <th class="th-sm">Priority</th>
+                                            <th class="th-sm">Date</th>
+                                            <th class="th-sm">Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="projectTickets-tbody">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Project Ticket in Project Desc Modal-->
+    <div class="modal fade" id="projectDescTicketDescModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ticket Description</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div id="projectDescTicketDescModalBody" class="modal-body">
+                    Test
                 </div>
             </div>
         </div>

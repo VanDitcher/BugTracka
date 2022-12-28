@@ -2,6 +2,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebas
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js";
 import { getDatabase, ref, set, child, update, remove, onValue, get } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
 import { DateTime } from "https://moment.github.io/luxon/es6/luxon.min.js";
+import 'https://code.jquery.com/jquery-3.6.1.min.js';
+import '/node_modules/datatables.net/js/jquery.dataTables.js';
 
 
 const firebaseConfig = {
@@ -125,8 +127,33 @@ function editTixBtnSetup(){
     document.getElementById('editTicketBtnT' + i).addEventListener("click", getEditTicketIndex);
   };
   function getEditTicketIndex(){ //transfering desc value to modal body paragraph 
+    ticketStatusTable.innerHTML = "";
+    ticketPriorityTable.innerHTML = "";
     editTicketIndex = event.target.parentElement.id;
-    editTicketIndex = editTicketIndex.slice(14,15)
+    editTicketIndex = editTicketIndex.slice(14,15);
+    if (tixArray[editTicketIndex].status == "new"){
+      ticketStatusTable.innerHTML+=("<option>New</option>");
+      ticketStatusTable.innerHTML+=("<option>Done</option>");
+    }
+    else{
+      ticketStatusTable.innerHTML+=("<option>Done</option>");
+      ticketStatusTable.innerHTML+=("<option>New</option>");
+    }
+    if (tixArray[editTicketIndex].priority == "high"){
+      ticketPriorityTable.innerHTML+=("<option>High</option>");
+      ticketPriorityTable.innerHTML+=("<option>Mid</option>");
+      ticketPriorityTable.innerHTML+=("<option>Low</option>");
+    }
+    else if(tixArray[editTicketIndex].priority == "mid"){
+      ticketPriorityTable.innerHTML+=("<option>Mid</option>");
+      ticketPriorityTable.innerHTML+=("<option>High</option>");
+      ticketPriorityTable.innerHTML+=("<option>Low</option>");
+    }
+    else{
+      ticketPriorityTable.innerHTML+=("<option>Low</option>");
+      ticketPriorityTable.innerHTML+=("<option>Mid</option>");
+      ticketPriorityTable.innerHTML+=("<option>High</option>");
+    }
   };
 
   $("#editTicketForm").submit(function(e) {
@@ -170,7 +197,8 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
       title : ticketTitleOG,
       id : ticketID,
       pid : ticketPID,
-      submitter : ticketSubmitter
+      submitter : ticketSubmitter,
+      lastupdate : datetime
     });
     if(ticketPriority != ticketPriorityOG && ticketStatus == ticketStatusOG){
       set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
@@ -608,6 +636,7 @@ async function viewTixBtnSetup(){
     document.getElementById("ticketDescriptionSectionCreated").innerHTML = tixArray[ticketIndex].date;
     ticketCommentsSetup(ticketIndex);
     ticketChangesSetup(ticketIndex);
+    ticketFilesSetup(ticketIndex);
   };
 }
 
@@ -634,7 +663,7 @@ function ticketCommentsSetup(ticketIndex){
 
 //Add comment to ticket button functionality
 $("#addCommentForm").submit(function(e) {
-  e.preventDefault();
+  //e.preventDefault();
   var addedTixComment = document.getElementById('ticketCommentAddValue').value;
   if (addedTixComment == ""){
     alert("Not a valid ticket!")
@@ -654,6 +683,40 @@ async function addTicketComment(addedTixComment) {
     message : addedTixComment,
     date : datetime
   });
+}
+
+//ticket files building
+function ticketFilesSetup(ticketIndex){
+  ticketFileTable.innerHTML = "";
+  let thisTicketFiles = [];
+  for (let i = 0; i<tixFilesArray.length; i++){
+    if (tixFilesArray[i].tid == tixArray[ticketIndex].id){
+      thisTicketFiles.push(tixFilesArray[i]);
+    }
+  }
+  for (var i = thisTicketFiles.length-1; i>=0; i--){
+
+    let template = `
+      <tr>
+        <td>${thisTicketFiles[i].fileName}</td>
+        <td>${thisTicketFiles[i].uploader}</td>
+        <td>${thisTicketFiles[i].created}</td>
+      </tr>`
+      ticketFileTable.innerHTML += template;
+  }
+  document.getElementById('ticketFileUploadBtn').addEventListener("click", uploadTicketFile);
+  function uploadTicketFile(){ //transfering desc value to modal body paragraph 
+    let uploadItem = document.getElementById('ticketUploadedFile').value.slice(12);
+    console.log(uploadItem);
+    var newTicketFileId = Date.now();
+    var datetime = DateTime.fromISO(DateTime.now(),{zone: 'utc-5'}).toFormat("yyyy'-'LL'-'dd' @'HH':'mm':'ss ZZZZ").toString();
+    set(ref(dbRef, 'ticketFiles/TF' + newTicketFileId), {
+      fileName : uploadItem,
+      uploader : "Demo Dev",
+      created : datetime,
+      tid : tixArray[ticketIndex].id
+    });
+    };
 }
 
 //ticket changes building
@@ -676,7 +739,7 @@ function ticketChangesSetup(ticketIndex){
         <td>${thisTicketChanges[i].datechanged}</td>
       </tr>`
     ticketChangesTable.innerHTML += template;
-  } 
+  }
 }
 
 //Ticket Delete Btn Functionality
@@ -721,6 +784,7 @@ $("#assignDevForm").submit(function(e) {
   editTicketDev(edittedTixDev)
 });
 async function editTicketDev(ticketDev) {
+  var datetime = DateTime.fromISO(DateTime.now(),{zone: 'utc-5'}).toFormat("yyyy'-'LL'-'dd' @'HH':'mm':'ss ZZZZ").toString();
   set(ref(dbRef, 'tickets/T' + tixArray[editTicketIndex].id), {
     date: tixArray[editTicketIndex].date,
     desc: tixArray[editTicketIndex].desc,
@@ -730,11 +794,10 @@ async function editTicketDev(ticketDev) {
     title : tixArray[editTicketIndex].title,
     id : tixArray[editTicketIndex].id,
     pid : tixArray[editTicketIndex].pid,
-    lastupdate : "FIx this and Add the history section",
+    lastupdate : datetime,
     submitter : tixArray[editTicketIndex].submitter
   });
   var newTicketChangesID = Date.now();
-  var datetime = DateTime.fromISO(DateTime.now(),{zone: 'utc-5'}).toFormat("yyyy'-'LL'-'dd' @'HH':'mm':'ss ZZZZ").toString();
   set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
     property: "Developer",
     oldvalue: "tbd",
@@ -823,13 +886,27 @@ async function populateUserArray(){
   return userArray;
 }
 
+//Ticket Files Array Populating
+async function populateTicketFilesArray(){
+  const snapshot = await get(ref(dbRef, 'ticketFiles'));
+  var tixFiles = [];
+
+  snapshot.forEach(childSnapshot=>{
+    tixFiles.push(childSnapshot.val());
+  });
+  return tixFiles;
+}
+
 var ticketIndex = 0;
 let ticketCommentTable = document.getElementById('ticketsComments-tbody');
+let ticketFileTable = document.getElementById('ticketsFiles-tbody');
 let ticketChangesTable = document.getElementById('tixChanges-tbody');
 let addTicketBtn = document.getElementById('addTicketBtn');
 let ticketTable = document.getElementById('tickets-tbody');
 var editTicketIndex = 0;
 let tixChartVals = [];
+let ticketStatusTable = document.getElementById('tixStatusEdit');
+let ticketPriorityTable = document.getElementById('tixPriorityEdit');
 
 
 await ticketListStartUp();
@@ -837,6 +914,9 @@ await editTixBtnSetup();
 await viewTixBtnSetup();
 await deleteTixBtnSetup();
 
+$(document).ready(function() {
+  $('#ticketDataTable').DataTable();
+});
 
 async function populateAvailDevArray(){
   const snapshot = await get(ref(dbRef, 'users'));
@@ -881,7 +961,9 @@ function dashCardValues(){
 
 const projArray = await populateProjArray();
 
-const userArray = await populateUserArray();
+const tixFilesArray = await populateTicketFilesArray();
+
+const userArray = await populateUserArray()
 
 buildSelectProjectAdd();
 
