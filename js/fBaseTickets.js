@@ -4,7 +4,7 @@ import { getDatabase, ref, set, child, update, remove, onValue, get } from "http
 import { DateTime } from "https://moment.github.io/luxon/es6/luxon.min.js";
 import 'https://code.jquery.com/jquery-3.6.1.min.js';
 import '/node_modules/datatables.net/js/jquery.dataTables.js';
-
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDMwzug_6RzdZ3UVvEjtbDGedpgEHFeN4A",
@@ -23,10 +23,11 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const database = getDatabase(app);
 const dbRef = getDatabase();
+const auth = getAuth();
 
 //---------------------------------------------------TICKET SYSTEM----------------------------------------------------------------
 //Ticket Table Printing Function
-async function ticketListStartUp(){
+async function ticketListStartUp(userRole){
   console.log("Building tickets...")
 
   for (var i = tixArray.length-1; i>=0; i--){
@@ -34,6 +35,7 @@ async function ticketListStartUp(){
     let printDev = "";
     let printStatus = "";
     let printPriority = "";
+    var template = "";
     if(tixArray[i].dev == 'tbd'){
       printDev = `<a id="a view tag" href="#" data-toggle="modal" data-target="#assignDevModal" style="text-decoration: none;"> <button id="assignDevBtnT${i}" style="background-color: #1F9EAE; border: none; color:white; border-radius:3px; text-align:center;">Assign Dev</button> </a>`;
     }
@@ -55,15 +57,45 @@ async function ticketListStartUp(){
     else{
       printPriority = `<button disabled style="background-color: #00000000; border: solid; border-color: #1cc88a; color:#1cc88a; border-radius:3px; text-align:center; border-width: 1px;">Low</button>`;
     }
-    let template = `
+    if (userRole == "dev"){
+      if(printDev == `<a id="a view tag" href="#" data-toggle="modal" data-target="#assignDevModal" style="text-decoration: none;"> <button id="assignDevBtnT${i}" style="background-color: #1F9EAE; border: none; color:white; border-radius:3px; text-align:center;">Assign Dev</button> </a>`){
+        printDev = ''
+      }
+      template = `
       <tr id="T${i}">
         <td><p id="tixTitleT0" style="margin: 0; font-weight: bold; color: #35393F">${tixArray[i].title}</p></td>
         <td id="assign${i}">${printDev}</td>
         <td>${printStatus}</td>
         <td>${printPriority}</td>
         <td><button disabled id="tixDateT0" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;">${tixArray[i].date}</button></td>
-        <td class="text-center"><a id="a view tag" href="#" data-toggle="modal" data-target="#ticketDescModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="viewTicketBtnT${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #1F9EAE; color:#1F9EAE; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-eye" style="color: #1F9EAE;"></i></button></a><a id="a edit tag" href="#" data-toggle="modal" data-target="#ticketEditModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="editTicketBtnT${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-pen" style="color: #858585;"></i></button></a><button id="deleteTicketT${i}" style="margin-left: 2px; margin-right: 2px; font-size: 12px; background-color: #00000000; border: solid; border-color: #E74A3B; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-trash" style="color: #E74A3B;"></i></button></td>
+        <td class="text-center"><a id="a view tag" href="#" data-toggle="modal" data-target="#ticketDescModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="viewTicketBtnT${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #1F9EAE; color:#1F9EAE; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-eye" style="color: #1F9EAE;"></i></button></a><a id="a edit tag" href="#" data-toggle="modal" data-target="#ticketEditModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="editTicketBtnT${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-pen" style="color: #858585;"></i></button></a></td>
       </tr>`
+    }
+    else if(userRole == "admin" || userRole == "pm"){
+      template = `
+      <tr id="T${i}">
+        <td><p id="tixTitleT0" style="margin: 0; font-weight: bold; color: #35393F">${tixArray[i].title}</p></td>
+        <td id="assign${i}">${printDev}</td>
+        <td>${printStatus}</td>
+        <td>${printPriority}</td>
+        <td><button disabled id="tixDateT0" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;">${tixArray[i].date}</button></td>
+        <td class="text-center"><a id="a view tag" href="#" data-toggle="modal" data-target="#ticketDescModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="viewTicketBtnT${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #1F9EAE; color:#1F9EAE; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-eye" style="color: #1F9EAE;"></i></button></a><a id="a edit tag" href="#" data-toggle="modal" data-target="#ticketEditModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="editTicketBtnT${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-pen" style="color: #858585;"></i></button></a><button class="ticketDeleteButtons" id="deleteTicketT${i}" style="margin-left: 2px; margin-right: 2px; font-size: 12px; background-color: #00000000; border: solid; border-color: #E74A3B; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-trash" style="color: #E74A3B;"></i></button></td>
+      </tr>`
+    }
+    else if(userRole == "submit"){
+      if(printDev == `<a id="a view tag" href="#" data-toggle="modal" data-target="#assignDevModal" style="text-decoration: none;"> <button id="assignDevBtnT${i}" style="background-color: #1F9EAE; border: none; color:white; border-radius:3px; text-align:center;">Assign Dev</button> </a>`){
+        printDev = ''
+      }
+      template = `
+      <tr id="T${i}">
+        <td><p id="tixTitleT0" style="margin: 0; font-weight: bold; color: #35393F">${tixArray[i].title}</p></td>
+        <td id="assign${i}">${printDev}</td>
+        <td>${printStatus}</td>
+        <td>${printPriority}</td>
+        <td><button disabled id="tixDateT0" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;">${tixArray[i].date}</button></td>
+        <td class="text-center"><a id="a view tag" href="#" data-toggle="modal" data-target="#ticketDescModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="viewTicketBtnT${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #1F9EAE; color:#1F9EAE; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-eye" style="color: #1F9EAE;"></i></button></a></td>
+      </tr>`
+    }
     ticketTable.innerHTML += template;
   }
 }
@@ -612,7 +644,8 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
 }
 
 //Ticket View Desc Button Functionality
-async function viewTixBtnSetup(){
+async function viewTixBtnSetup(uid){
+  var userID = uid;
   console.log("View ticket description buttons setup...")
   for (var i = 0; i<tixArray.length; i++){
     let ticketDescIndex = i;
@@ -636,7 +669,7 @@ async function viewTixBtnSetup(){
     document.getElementById("ticketDescriptionSectionCreated").innerHTML = tixArray[ticketIndex].date;
     ticketCommentsSetup(ticketIndex);
     ticketChangesSetup(ticketIndex);
-    ticketFilesSetup(ticketIndex);
+    ticketFilesSetup(ticketIndex, userID);
   };
 }
 
@@ -661,32 +694,28 @@ function ticketCommentsSetup(ticketIndex){
   } 
 }
 
-//Add comment to ticket button functionality
-$("#addCommentForm").submit(function(e) {
-  //e.preventDefault();
-  var addedTixComment = document.getElementById('ticketCommentAddValue').value;
-  if (addedTixComment == ""){
-    alert("Not a valid ticket!")
-  }
-  else{
-    addTicketComment(addedTixComment);
-  }
-});
-async function addTicketComment(addedTixComment) {
+async function addTicketComment(addedTixComment, userID) {
   let tixCommentId = Date.now()
   var datetime = DateTime.fromISO(DateTime.now(),{zone: 'utc-5'}).toFormat("yyyy'-'LL'-'dd' @'HH':'mm':'ss ZZZZ").toString();
-
+  var commentingUser = "";
+  for (let i = 0; i<userArray.length; i++){
+    console.log(userArray[i]);
+    if (userArray[i].id == userID){
+      commentingUser = userArray[i].name;
+    }
+  }
   set(ref(dbRef, 'ticketcomments/TC' + tixCommentId), {
     id: tixCommentId.toString(),
     tid: tixArray[ticketIndex].id,
-    commenter : "Michael Vanditch",
+    commenter : commentingUser,
     message : addedTixComment,
     date : datetime
   });
+  location.reload();
 }
 
 //ticket files building
-function ticketFilesSetup(ticketIndex){
+function ticketFilesSetup(ticketIndex, userID){
   ticketFileTable.innerHTML = "";
   let thisTicketFiles = [];
   for (let i = 0; i<tixFilesArray.length; i++){
@@ -704,15 +733,26 @@ function ticketFilesSetup(ticketIndex){
       </tr>`
       ticketFileTable.innerHTML += template;
   }
+  var Fileuid = userID;
   document.getElementById('ticketFileUploadBtn').addEventListener("click", uploadTicketFile);
   function uploadTicketFile(){ //transfering desc value to modal body paragraph 
     let uploadItem = document.getElementById('ticketUploadedFile').value.slice(12);
     console.log(uploadItem);
     var newTicketFileId = Date.now();
     var datetime = DateTime.fromISO(DateTime.now(),{zone: 'utc-5'}).toFormat("yyyy'-'LL'-'dd' @'HH':'mm':'ss ZZZZ").toString();
-    set(ref(dbRef, 'ticketFiles/TF' + newTicketFileId), {
+    var commentingUser = "";
+    for (let i = 0; i<userArray.length; i++){
+      console.log(userArray[i]);
+      if (userArray[i].id == Fileuid){
+        commentingUser = userArray[i].name;
+      }
+    }
+
+
+    set(ref(dbRef, 'ticketfiles/TF' + newTicketFileId), {
+      id: newTicketFileId.toString(),
       fileName : uploadItem,
-      uploader : "Demo Dev",
+      uploader : commentingUser,
       created : datetime,
       tid : tixArray[ticketIndex].id
     });
@@ -754,6 +794,21 @@ async function deleteTixBtnSetup(){
     ticketIndex = ticketIndex.slice(1,2)
     alert("Deleting ticket T" + tixArray[ticketIndex].id)
     remove(ref(dbRef, 'tickets/T' + tixArray[ticketIndex].id));
+    for (let i = 0; i<tixCommentArray.length; i++){
+      if (tixArray[ticketIndex].id == tixCommentArray[i].tid){
+        remove(ref(dbRef, 'ticketcomments/TC' + tixCommentArray[i].id));
+      }
+    }
+    for (let i = 0; i<tixChangesArray.length; i++){
+      if (tixArray[ticketIndex].id == tixChangesArray[i].tid){
+        remove(ref(dbRef, 'ticketchanges/TCH' + tixChangesArray[i].id));
+      }
+    }
+    for (let i = 0; i<tixFilesArray.length; i++){
+      if (tixArray[ticketIndex].id == tixFilesArray[i].tid){
+        remove(ref(dbRef, 'ticketfiles/TF' + tixFilesArray[i].id));
+      }
+    }
     location.reload();
   };
 }
@@ -888,7 +943,7 @@ async function populateUserArray(){
 
 //Ticket Files Array Populating
 async function populateTicketFilesArray(){
-  const snapshot = await get(ref(dbRef, 'ticketFiles'));
+  const snapshot = await get(ref(dbRef, 'ticketfiles'));
   var tixFiles = [];
 
   snapshot.forEach(childSnapshot=>{
@@ -909,15 +964,6 @@ let ticketStatusTable = document.getElementById('tixStatusEdit');
 let ticketPriorityTable = document.getElementById('tixPriorityEdit');
 
 
-await ticketListStartUp();
-await editTixBtnSetup();
-await viewTixBtnSetup();
-await deleteTixBtnSetup();
-
-$(document).ready(function() {
-  $('#ticketDataTable').DataTable();
-});
-
 async function populateAvailDevArray(){
   const snapshot = await get(ref(dbRef, 'users'));
   var devArray = [];
@@ -936,7 +982,7 @@ async function populateAvailDevArray(){
   return devArray;
 }
 var devArray = await populateAvailDevArray();
-await assignDevBtnSetup(); //need to setup the members list first
+//need to setup the members list first
 
 
 
@@ -968,3 +1014,89 @@ const userArray = await populateUserArray()
 buildSelectProjectAdd();
 
 dashCardValues();
+
+//--------------------------------------------------------Authentication System---------------------------------------------------------------
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    const uid = user.uid;
+    //Add comment to ticket button functionality
+    $("#addCommentForm").submit(function(e) {
+      e.preventDefault();
+      var addedTixComment = document.getElementById('ticketCommentAddValue').value;
+      if (addedTixComment == ""){
+        alert("Not a valid comment!")
+      }
+      else{
+        addTicketComment(addedTixComment, uid);
+      }
+    });
+    if (uid == "3XTExdq9ELUSR23RhH3FuwGZvbx1"){//Demo Admin Sign in
+      var role = "admin";
+      document.getElementById('adminSideBarButton').innerHTML = `
+      <a href="admindash.html">
+          <i class="fas fa-user-shield"></i>
+          Admin
+      </a>
+      `;
+      document.getElementById('cornerNameDisplay').innerHTML = 'Demo Admin'
+      ticketListStartUp(role);
+      editTixBtnSetup();
+      viewTixBtnSetup(uid);
+      deleteTixBtnSetup();
+      assignDevBtnSetup();
+      $(document).ready(function() {
+        $('#ticketDataTable').DataTable();
+      });
+    }
+    else if (uid == "zsoy1sPUTfVFZArUl9hzAx0hlM32"){ //Demo Dev Sign in
+      var role = "dev";
+      document.getElementById('cornerNameDisplay').innerHTML = 'Demo Dev';
+      ticketListStartUp(role);
+      editTixBtnSetup();
+      viewTixBtnSetup(uid);
+      $(document).ready(function() {
+        $('#ticketDataTable').DataTable();
+      });
+    }
+    else if (uid == "rQVkk2wA0QbUir3JxCuQBa4s58p1"){ //Demo Submitter Sign in
+      var role = "submit";
+      document.getElementById('cornerNameDisplay').innerHTML = 'Demo Submitter';
+      ticketListStartUp(role);
+      viewTixBtnSetup(uid);
+      $(document).ready(function() {
+        $('#ticketDataTable').DataTable();
+      });
+    }
+    else if (uid == "OwgqTXwLKMROqL96pTOkgl3MliD2"){ //Demo Project Manager Sign in
+      var role = "pm";
+      document.getElementById('cornerNameDisplay').innerHTML = 'Demo Project Manager';
+      ticketListStartUp(role);
+      editTixBtnSetup();
+      viewTixBtnSetup(uid);
+      deleteTixBtnSetup();
+      assignDevBtnSetup();
+      $(document).ready(function() {
+        $('#ticketDataTable').DataTable();
+      });
+    }
+    else if (uid == "d9dD4AseBYSwRYRxYuoLO2DAZaj1"){ //Demo Dev Sign in
+      var role = "dev";
+      document.getElementById('cornerNameDisplay').innerHTML = 'Michael Vanditch';
+      ticketListStartUp(role);
+      editTixBtnSetup();
+      viewTixBtnSetup(uid);
+      $(document).ready(function() {
+        $('#ticketDataTable').DataTable();
+      });
+    }
+
+
+
+    // ...
+  } else {
+    // User is signed out
+    // ...
+  }
+});

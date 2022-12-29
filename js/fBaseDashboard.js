@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js";
 import { getDatabase, ref, set, child, update, remove, onValue, get } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDMwzug_6RzdZ3UVvEjtbDGedpgEHFeN4A",
@@ -18,6 +19,27 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const database = getDatabase(app);
 const dbRef = getDatabase();
+const auth = getAuth();
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    const uid = user.uid;
+    if (uid == "3XTExdq9ELUSR23RhH3FuwGZvbx1"){
+      document.getElementById('adminSideBarButton').innerHTML = `
+      <a href="admindash.html">
+          <i class="fas fa-user-shield"></i>
+          Admin
+      </a>
+      `;
+    }
+    // ...
+  } else {
+    // User is signed out
+    // ...
+  }
+});
+
 
 //--------------------------------------------------------TOP OF DASHBOARD SYSTEM------------------------------------------------------------
 async function populateTixArray(){

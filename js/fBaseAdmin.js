@@ -3,6 +3,8 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase
 import { getDatabase, ref, set, child, update, remove, onValue, get } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
 import 'https://code.jquery.com/jquery-3.6.1.min.js';
 import '/node_modules/datatables.net/js/jquery.dataTables.js';
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyDMwzug_6RzdZ3UVvEjtbDGedpgEHFeN4A",
@@ -20,6 +22,7 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const database = getDatabase(app);
 const dbRef = getDatabase();
+const auth = getAuth();
 
 //---------------------------------------------------EMPLOYEES SYSTEM----------------------------------------------------------------
 async function populateUserArray(){
@@ -33,9 +36,9 @@ async function populateUserArray(){
 }
 
 //User Table Builder
-async function usersListStartUp(){
+async function usersListStartUp(userRole){
   console.log("Building users...")
-
+  var template = ``;
   for (var i = 0; i<userArray.length; i++){
     let printRole = "";
     if(userArray[i].role == "Administrator"){
@@ -50,21 +53,31 @@ async function usersListStartUp(){
     else if(userArray[i].role == "Submitter"){
       printRole = `<button disabled style="background-color: #00000000; border: solid; border-color: #CB6A11; color:#CB6A11; border-radius:3px; text-align:center; border-width: 1px;">SUBMIT</button>`
     }
-
-    let template = `
+    if(userRole == "admin"){
+      template = `
       <tr>
         <td><p style="margin: 0; font-weight: bold; color: #35393F">${userArray[i].name}</p></td>
+        <td><p style="margin: 0; color: #35393F">${userArray[i].email}</p></td>
         <td><p style="margin: 0; color: #35393F">${userArray[i].team}</p></td>
         <td class="text-center">${printRole}</td>
         <td class="text-end">
         <a href="#" data-toggle="modal" data-target="#userEditModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="userEditBtnU${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-pen" style="color: #858585;"></i></button></a>
         </td>
       </tr>`
-      userTable.innerHTML += template;
+    }
+    else{
+      template = `
+      <tr>
+        <td><p style="margin: 0; font-weight: bold; color: #35393F">${userArray[i].name}</p></td>
+        <td><p style="margin: 0; color: #35393F">${userArray[i].email}</p></td>
+        <td><p style="margin: 0; color: #35393F">${userArray[i].team}</p></td>
+        <td class="text-center">${printRole}</td>
+        <td class="text-end">
+        </td>
+      </tr>`
+    }
+    userTable.innerHTML += template;
   }
-  $(document).ready(function() {
-    $('#userDataTable').DataTable();
-  });
 }
 
 //Edit User Functionality
@@ -151,11 +164,13 @@ async function editUser(userName, userRole, userTeam) {
     return value;
   }
   let userNameOG = userArray[userEditBtnIndex].name;
+  let emailOG = userArray[userEditBtnIndex].email;
   let userIdOG = userArray[userEditBtnIndex].id;
   let userProjectsOG = userArray[userEditBtnIndex].projects;
   let userTeamOG = userArray[userEditBtnIndex].team;
   
   set(ref(dbRef, 'users/U' + userArray[userEditBtnIndex].id), {
+    email: emailOG,
     id: userIdOG,
     name: userName,
     role : userRole,
@@ -166,10 +181,8 @@ async function editUser(userName, userRole, userTeam) {
 var userArray =  await populateUserArray();
 
 let userTable = document.getElementById('userTable-tbody');
-await usersListStartUp();
 
 var userEditBtnIndex = 0;
-editUserBtnSetup();
 
 
 //--------------------------------------------------------TOP OF DASHBOARD SYSTEM------------------------------------------------------------
@@ -212,3 +225,38 @@ const tixArray = await populateTixArray();
 const projArray = await populateProjArray();
 
 dashCardValues();
+
+
+//--------------------------------------------------------Authentication System---------------------------------------------------------------
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    const uid = user.uid;
+    if (uid == "3XTExdq9ELUSR23RhH3FuwGZvbx1"){//Demo Admin Sign in
+      var role = "admin";
+      document.getElementById('adminSideBarButton').innerHTML = `
+      <a href="admindash.html">
+          <i class="fas fa-user-shield"></i>
+          Admin
+      </a>
+      `;
+      document.getElementById('cornerNameDisplay').innerHTML = 'Demo Admin'
+      usersListStartUp(role);
+      editUserBtnSetup();
+      $(document).ready(function() {
+        $('#userDataTable').DataTable();
+      });
+    }
+    else{
+      var role = "notadmin"
+      usersListStartUp(role);
+      $(document).ready(function() {
+        $('#userDataTable').DataTable();
+      });
+    }
+  } else {
+    // User is signed out
+    // ...
+  }
+});

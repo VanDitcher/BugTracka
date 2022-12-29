@@ -3,6 +3,8 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase
 import { getDatabase, ref, set, child, update, remove, onValue, get } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
 import 'https://code.jquery.com/jquery-3.6.1.min.js';
 import '/node_modules/datatables.net/js/jquery.dataTables.js';
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
+
 
 
 const firebaseConfig = {
@@ -21,12 +23,14 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const database = getDatabase(app);
 const dbRef = getDatabase();
+const auth = getAuth();
 
 //---------------------------------------------------PROJECT SYSTEM----------------------------------------------------------------
 
 //Project Table Printing Function
-function projectListStartUp(){
+function projectListStartUp(userRole){
   console.log("Building projects...")
+  var template = ``;
 
   for (var i = 0; i<projArray.length; i++){
     let printProjPriority = "";
@@ -40,8 +44,8 @@ function projectListStartUp(){
       printProjPriority = `<button disabled style="background-color: #00000000; border: solid; border-color: #1cc88a; color:#1cc88a; border-radius:3px; text-align:center; border-width: 1px;">Low</button>`;
     }
 
-
-    let template = `
+    if (userRole == "admin" || userRole == "pm"){
+      template = `
       <tr id="T${i}">
         <td><p style="font-size: clamp(0.5rem, 0.8vw, 1rem);margin: 0; font-weight: bold; color: #35393F">${projArray[i].title}</p></td>
         <td>${printProjPriority}</td>
@@ -50,6 +54,18 @@ function projectListStartUp(){
         <td><p style="margin-top: 2px;font-size: clamp(5px, 0.8vw, 19px);">${projArray[i].team}</p></td>
         <td class="text-right"><a href="#" id="viewProjectP${i}" data-toggle="modal" data-target="#projectViewModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="viewProjectP${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #1F9EAE; color:#1F9EAE; border-radius:3px; text-align:center; border-width: 1px;"><i id="viewProjectP${i}" class="fas fa-eye" style="color: #1F9EAE;"></i></button></a><a id="a edit tag" href="#" data-toggle="modal" data-target="#projectEditModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="editProjectBtnP${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-pen" style="color: #858585;"></i></button></a><button id="deleteProjectP${i}" style="margin-left: 2px; margin-right: 2px; font-size: 12px; background-color: #00000000; border: solid; border-color: #E74A3B; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-trash" style="color: #E74A3B;"></i></button></td>
       </tr>`
+    }
+    else if(userRole == "dev" || userRole == "submit"){
+      template = `
+      <tr id="T${i}">
+        <td><p style="font-size: clamp(0.5rem, 0.8vw, 1rem);margin: 0; font-weight: bold; color: #35393F">${projArray[i].title}</p></td>
+        <td>${printProjPriority}</td>
+        <td><button disabled style="font-size: clamp(5px, 0.8vw, 10px); background-color: #00000000; border: solid; border-color: #1cc88a; color:#1cc88a; border-radius:3px; text-align:center; border-width: 1px;">${projArray[i].start}</button></td>
+        <td><button disabled style="font-size: clamp(5px, 0.8vw, 10px); background-color: #00000000; border: solid; border-color: #e74a3b; color:#e74a3b; border-radius:3px; text-align:center; border-width: 1px;">${projArray[i].end}</button></td>
+        <td><p style="margin-top: 2px;font-size: clamp(5px, 0.8vw, 19px);">${projArray[i].team}</p></td>
+        <td class="text-right"><a href="#" id="viewProjectP${i}" data-toggle="modal" data-target="#projectViewModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="viewProjectP${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #1F9EAE; color:#1F9EAE; border-radius:3px; text-align:center; border-width: 1px;"><i id="viewProjectP${i}" class="fas fa-eye" style="color: #1F9EAE;"></i></button></a></td>
+      </tr>`
+    }
       projectTable.innerHTML += template;
   }
 }
@@ -394,23 +410,13 @@ var projectTicketsTable = document.getElementById('projectTickets-tbody');
 let projectTable = document.getElementById('projects-tbody');
 var projectPriorityEdit = document.getElementById('projectPriorityEdit');
 var projTeamEdit = document.getElementById('projTeamEdit');
-
-projectListStartUp();
-
-$(document).ready(function() {
-  $('#projectDataTable').DataTable();
-});
-
-await deleteProjBtnSetup();
-
 var editProjectIndex = 0;
-await editProjBtnSetup();
 
 let projChartVals = [];
 ticketDistributionChartSetup()
 export {projChartVals}
 
-await viewProjBtnSetup();
+
 
 //--------------------------------------------------------TOP OF DASHBOARD SYSTEM------------------------------------------------------------
 //Dashcard Values Setup
@@ -428,3 +434,73 @@ function dashCardValues(){
 }
 
 dashCardValues();
+
+
+//--------------------------------------------------------Authentication System---------------------------------------------------------------
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    const uid = user.uid;
+    if (uid == "3XTExdq9ELUSR23RhH3FuwGZvbx1"){//Demo Admin Sign in
+      var role = "admin";
+      document.getElementById('adminSideBarButton').innerHTML = `
+      <a href="admindash.html">
+          <i class="fas fa-user-shield"></i>
+          Admin
+      </a>
+      `;
+      document.getElementById('cornerNameDisplay').innerHTML = 'Demo Admin'
+      projectListStartUp(role);
+      deleteProjBtnSetup();
+      editProjBtnSetup();
+      viewProjBtnSetup();
+      $(document).ready(function() {
+        $('#projectDataTable').DataTable();
+      });
+    }
+    else if (uid == "zsoy1sPUTfVFZArUl9hzAx0hlM32"){ //Demo Dev Sign in
+      var role = "dev";
+      document.getElementById('cornerNameDisplay').innerHTML = 'Demo Dev';
+      projectListStartUp(role);
+      viewProjBtnSetup();
+      $(document).ready(function() {
+        $('#projectDataTable').DataTable();
+      });
+    }
+    else if (uid == "rQVkk2wA0QbUir3JxCuQBa4s58p1"){ //Demo Submitter Sign in
+      var role = "submit";
+      document.getElementById('cornerNameDisplay').innerHTML = 'Demo Submitter';
+      projectListStartUp(role);
+      viewProjBtnSetup();
+      $(document).ready(function() {
+        $('#projectDataTable').DataTable();
+      });
+    }
+    else if (uid == "OwgqTXwLKMROqL96pTOkgl3MliD2"){ //Demo Project Manager Sign in
+      var role = "pm";
+      document.getElementById('cornerNameDisplay').innerHTML = 'Demo Project Manager';
+      projectListStartUp(role);
+      deleteProjBtnSetup();
+      editProjBtnSetup();
+      viewProjBtnSetup();
+      $(document).ready(function() {
+        $('#projectDataTable').DataTable();
+      });
+    }
+    else if (uid == "d9dD4AseBYSwRYRxYuoLO2DAZaj1"){ //Michael Vanditch Sign in
+      var role = "dev";
+      document.getElementById('cornerNameDisplay').innerHTML = 'Michael Vanditch';
+      projectListStartUp(role);
+      viewProjBtnSetup();
+      $(document).ready(function() {
+        $('#projectDataTable').DataTable();
+      });
+    }
+    
+    // ...
+  } else {
+    // User is signed out
+    // ...
+  }
+});
