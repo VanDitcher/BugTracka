@@ -68,7 +68,7 @@ async function ticketListStartUp(userRole){
         <td>${printStatus}</td>
         <td>${printPriority}</td>
         <td><button disabled id="tixDateT0" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;">${tixArray[i].date}</button></td>
-        <td class="text-center"><a id="a view tag" href="#" data-toggle="modal" data-target="#ticketDescModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="viewTicketBtnT${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #1F9EAE; color:#1F9EAE; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-eye" style="color: #1F9EAE;"></i></button></a><a id="a edit tag" href="#" data-toggle="modal" data-target="#ticketEditModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="editTicketBtnT${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-pen" style="color: #858585;"></i></button></a></td>
+        <td class="text-center"><a id="a view tag" href="#" data-toggle="modal" data-target="#ticketDescModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="viewTicketBtnT${i}" style="padding-left: 2px; padding-right: 2px; padding-top: 0px; padding-bottom: 0px; font-size: 15px; background-color: #00000000; border: solid; border-color: #1F9EAE; color:#1F9EAE; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-eye" style="padding-top: 2px; padding-bottom: 2px; color: #1F9EAE;"></i></button></a><a id="a edit tag" href="#" data-toggle="modal" data-target="#ticketEditModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="editTicketBtnT${i}" style="padding-left: 2px; padding-right: 2px; padding-top: 0px; padding-bottom: 0px; font-size: 15px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-pen" style="padding-top: 2px; padding-bottom: 2px; color: #858585;"></i></button></a></td>
       </tr>`
     }
     else if(userRole == "admin" || userRole == "pm"){
@@ -79,7 +79,7 @@ async function ticketListStartUp(userRole){
         <td>${printStatus}</td>
         <td>${printPriority}</td>
         <td><button disabled id="tixDateT0" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;">${tixArray[i].date}</button></td>
-        <td class="text-center"><a id="a view tag" href="#" data-toggle="modal" data-target="#ticketDescModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="viewTicketBtnT${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #1F9EAE; color:#1F9EAE; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-eye" style="color: #1F9EAE;"></i></button></a><a id="a edit tag" href="#" data-toggle="modal" data-target="#ticketEditModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="editTicketBtnT${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-pen" style="color: #858585;"></i></button></a><button class="ticketDeleteButtons" id="deleteTicketT${i}" style="margin-left: 2px; margin-right: 2px; font-size: 12px; background-color: #00000000; border: solid; border-color: #E74A3B; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-trash" style="color: #E74A3B;"></i></button></td>
+        <td class="text-center"><a id="a view tag" href="#" data-toggle="modal" data-target="#ticketDescModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="viewTicketBtnT${i}" style="padding-left: 2px; padding-right: 2px; padding-top: 0px; padding-bottom: 0px; font-size: 15px; background-color: #00000000; border: solid; border-color: #1F9EAE; color:#1F9EAE; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-eye" style="padding-top: 2px; padding-bottom: 2px; color: #1F9EAE;"></i></button></a><a id="a edit tag" href="#" data-toggle="modal" data-target="#ticketEditModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="editTicketBtnT${i}" style="padding-left: 2px; padding-right: 2px; padding-top: 0px; padding-bottom: 0px; font-size: 15px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-pen" style="padding-top: 2px; padding-bottom: 2px; color: #858585;"></i></button></a><button class="ticketDeleteButtons" id="deleteTicketT${i}" style="padding-left: 2px; padding-right: 2px; padding-top: 0px; padding-bottom: 0px; font-size: 15px; background-color: #00000000; border: solid; border-color: #E74A3B; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-trash" style="color: #E74A3B;"></i></button></td>
       </tr>`
     }
     else if(userRole == "submit"){
@@ -93,7 +93,7 @@ async function ticketListStartUp(userRole){
         <td>${printStatus}</td>
         <td>${printPriority}</td>
         <td><button disabled id="tixDateT0" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;">${tixArray[i].date}</button></td>
-        <td class="text-center"><a id="a view tag" href="#" data-toggle="modal" data-target="#ticketDescModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="viewTicketBtnT${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #1F9EAE; color:#1F9EAE; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-eye" style="color: #1F9EAE;"></i></button></a></td>
+        <td class="text-center"><a id="a view tag" href="#" data-toggle="modal" data-target="#ticketDescModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="viewTicketBtnT${i}" style="padding-left: 2px; padding-right: 2px; padding-top: 0px; padding-bottom: 0px; font-size: 15px; background-color: #00000000; border: solid; border-color: #1F9EAE; color:#1F9EAE; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-eye" style="padding-top: 2px; padding-bottom: 2px; color: #1F9EAE;"></i></button></a></td>
       </tr>`
     }
     ticketTable.innerHTML += template;
@@ -187,18 +187,17 @@ function editTixBtnSetup(){
       ticketPriorityTable.innerHTML+=("<option>High</option>");
     }
   };
-
+  //ticket edit submit button functionality
   $("#editTicketForm").submit(function(e) {
     //e.preventDefault();
     var edittedTixTitle = document.getElementById('tixTitleEdit').value;
     var edittedTixDesc = document.getElementById('tixDescEdit').value;
     var edittedTixStatus = document.getElementById('tixStatusEdit').value.toLowerCase();
     var edittedTixPriority = document.getElementById('tixPriorityEdit').value.toLowerCase();
-    var edittedTixDate = document.getElementById('tixDateEdit').value;
-    editTicket(edittedTixTitle, edittedTixDesc, edittedTixStatus, edittedTixPriority, edittedTixDate)
+    editTicket(edittedTixTitle, edittedTixDesc, edittedTixStatus, edittedTixPriority)
   });
 }
-async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority, ticketDate) {
+async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority) {
   async function getEditTixDev(key){
     const snapshot = await get(ref(dbRef, 'tickets/' + editTicketIndex + key));
     var data = snapshot.val();
@@ -218,8 +217,8 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
   var newTicketChangesID = Date.now();
   var datetime = DateTime.fromISO(DateTime.now(),{zone: 'utc-5'}).toFormat("yyyy'-'LL'-'dd' @'HH':'mm':'ss ZZZZ").toString();
 
-  if(ticketTitle == "" && ticketDesc == "" && ticketDate == ""){
-    console.log("0 0 0");
+  if(ticketTitle == "" && ticketDesc == ""){
+    console.log("0 0");
     set(ref(dbRef, 'tickets/T' + tixArray[editTicketIndex].id), {
       date: ticketDateOG,
       desc: ticketDescOG,
@@ -263,22 +262,23 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
       });
     }
   }
-  else if(ticketTitle == "" && ticketDesc == "" && ticketDate != ""){
-    console.log("0 0 1");
+  else if(ticketTitle == "" && ticketDesc != ""){
+    console.log("0 1");
     set(ref(dbRef, 'tickets/T' + tixArray[editTicketIndex].id), {
-      date: ticketDate,
-      desc: ticketDescOG,
+      date: ticketDateOG,
+      desc: ticketDesc,
       dev : ticketDevOG,
       priority : ticketPriority,
       status : ticketStatus,
       title : ticketTitleOG,
       id : ticketID,
       pid : ticketPID,
-      submitter : ticketSubmitter
+      submitter : ticketSubmitter,
+      lastupdate : datetime
     });
     if(ticketPriority != ticketPriorityOG && ticketStatus == ticketStatusOG){
       set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Priority, Date",
+        property: "Priority, Description",
         oldvalue: `${ticketPriorityOG}, ${ticketDateOG}`,
         newvalue : `${ticketPriority}, ${ticketDate}`,
         datechanged : datetime,
@@ -288,7 +288,7 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
     }
     else if(ticketPriority == ticketPriorityOG && ticketStatus != ticketStatusOG){
       set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Status, Date",
+        property: "Status, Description",
         oldvalue: `${ticketStatusOG}, ${ticketDateOG}`,
         newvalue : `${ticketStatus}, ${ticketDate}`,
         datechanged : datetime,
@@ -298,7 +298,7 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
     }
     else if(ticketPriority != ticketPriorityOG && ticketStatus != ticketStatusOG){
       set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Priority, Status, Date",
+        property: "Priority, Status, Description",
         oldvalue: `${ticketPriorityOG}, ${ticketStatusOG}, ${ticketDateOG}`,
         newvalue : `${ticketPriority}, ${ticketStatus}, ${ticketDate}`,
         datechanged : datetime,
@@ -308,7 +308,7 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
     }
     else{
       set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Date",
+        property: "Description",
         oldvalue: `${ticketDateOG}`,
         newvalue : `${ticketDate}`,
         datechanged : datetime,
@@ -317,22 +317,23 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
       });
     }
   }
-  else if(ticketTitle == "" && ticketDesc != "" && ticketDate == ""){
-    console.log("0 1 0");
+  else if(ticketTitle != "" && ticketDesc == ""){
+    console.log("1 0");
     set(ref(dbRef, 'tickets/T' + tixArray[editTicketIndex].id), {
       date: ticketDateOG,
-      desc: ticketDesc,
+      desc: ticketDescOG,
       dev : ticketDevOG,
       priority : ticketPriority,
       status : ticketStatus,
-      title : ticketTitleOG,
+      title : ticketTitle,
       id : ticketID,
       pid : ticketPID,
-      submitter : ticketSubmitter
+      submitter : ticketSubmitter,
+      lastupdate : datetime
     });
     if(ticketPriority != ticketPriorityOG && ticketStatus == ticketStatusOG){
       set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Priority, Description",
+        property: "Priority, Title",
         oldvalue: `${ticketPriorityOG}, ${ticketDescOG}`,
         newvalue : `${ticketPriority}, ${ticketDesc}`,
         datechanged : datetime,
@@ -342,7 +343,7 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
     }
     else if(ticketPriority == ticketPriorityOG && ticketStatus != ticketStatusOG){
       set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Status, Description",
+        property: "Status, Title",
         oldvalue: `${ticketStatusOG}, ${ticketDescOG}`,
         newvalue : `${ticketStatus}, ${ticketDesc}`,
         datechanged : datetime,
@@ -352,7 +353,7 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
     }
     else if(ticketPriority != ticketPriorityOG && ticketStatus != ticketStatusOG){
       set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Priority, Status, Description",
+        property: "Priority, Status, Title",
         oldvalue: `${ticketPriorityOG}, ${ticketStatusOG}, ${ticketDescOG}`,
         newvalue : `${ticketPriority}, ${ticketStatus}, ${ticketDesc}`,
         datechanged : datetime,
@@ -362,7 +363,7 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
     }
     else{
       set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Description",
+        property: "Title",
         oldvalue: `${ticketDescOG}`,
         newvalue : `${ticketDesc}`,
         datechanged : datetime,
@@ -371,22 +372,23 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
       });
     }
   }
-  else if(ticketTitle == "" && ticketDesc != "" && ticketDate != ""){
-    console.log("0 1 1");
+  else if(ticketTitle != "" && ticketDesc != ""){
+    console.log("1 1");
     set(ref(dbRef, 'tickets/T' + tixArray[editTicketIndex].id), {
-      date: ticketDate,
+      date: ticketDateOG,
       desc: ticketDesc,
       dev : ticketDevOG,
       priority : ticketPriority,
       status : ticketStatus,
-      title : ticketTitleOG,
+      title : ticketTitle,
       id : ticketID,
       pid : ticketPID,
-      submitter : ticketSubmitter
+      submitter : ticketSubmitter,
+      lastupdate : datetime
     });
     if(ticketPriority != ticketPriorityOG && ticketStatus == ticketStatusOG){
       set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Priority, Description, Date",
+        property: "Priority, Description, Title",
         oldvalue: `${ticketPriorityOG}, ${ticketDescOG}, ${ticketDateOG}`,
         newvalue : `${ticketPriority}, ${ticketDesc}, ${ticketDate}`,
         datechanged : datetime,
@@ -396,7 +398,7 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
     }
     else if(ticketPriority == ticketPriorityOG && ticketStatus != ticketStatusOG){
       set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Status, Description, Date",
+        property: "Status, Description, Title",
         oldvalue: `${ticketStatusOG}, ${ticketDescOG}, ${ticketDateOG}`,
         newvalue : `${ticketStatus}, ${ticketDesc}, ${ticketDate}`,
         datechanged : datetime,
@@ -406,7 +408,7 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
     }
     else if(ticketPriority != ticketPriorityOG && ticketStatus != ticketStatusOG){
       set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Priority, Status, Description, Date",
+        property: "Priority, Status, Description, Title",
         oldvalue: `${ticketPriorityOG}, ${ticketStatusOG}, ${ticketDescOG}, ${ticketDateOG}`,
         newvalue : `${ticketPriority}, ${ticketStatus}, ${ticketDesc}, ${ticketDate}`,
         datechanged : datetime,
@@ -416,225 +418,9 @@ async function editTicket(ticketTitle, ticketDesc, ticketStatus, ticketPriority,
     }
     else{
       set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Description, Date",
+        property: "Description, Title",
         oldvalue: `${ticketDescOG}, ${ticketDateOG}`,
         newvalue : `${ticketDesc}, ${ticketDate}`,
-        datechanged : datetime,
-        id : newTicketChangesID.toString(),
-        tid : tixArray[editTicketIndex].id
-      });
-    }
-  }
-  else if(ticketTitle != "" && ticketDesc == "" && ticketDate == ""){
-    console.log("1 0 0");
-    set(ref(dbRef, 'tickets/T' + tixArray[editTicketIndex].id), {
-      date: ticketDateOG,
-      desc: ticketDescOG,
-      dev : ticketDevOG,
-      priority : ticketPriority,
-      status : ticketStatus,
-      title : ticketTitle,
-      id : ticketID,
-      pid : ticketPID,
-      submitter : ticketSubmitter
-    });
-    if(ticketPriority != ticketPriorityOG && ticketStatus == ticketStatusOG){
-      set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Priority, Title",
-        oldvalue: `${ticketPriorityOG}, ${ticketTitleOG}`,
-        newvalue : `${ticketPriority}, ${ticketTitle}`,
-        datechanged : datetime,
-        id : newTicketChangesID.toString(),
-        tid : tixArray[editTicketIndex].id
-      });
-    }
-    else if(ticketPriority == ticketPriorityOG && ticketStatus != ticketStatusOG){
-      set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Status, Title",
-        oldvalue: `${ticketStatusOG}, ${ticketTitleOG}`,
-        newvalue : `${ticketStatus}, ${ticketTitle}`,
-        datechanged : datetime,
-        id : newTicketChangesID.toString(),
-        tid : tixArray[editTicketIndex].id
-      });
-    }
-    else if(ticketPriority != ticketPriorityOG && ticketStatus != ticketStatusOG){
-      set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Priority, Status, Title",
-        oldvalue: `${ticketPriorityOG}, ${ticketStatusOG}, ${ticketTitleOG}`,
-        newvalue : `${ticketPriority}, ${ticketStatus}, ${ticketTitle}`,
-        datechanged : datetime,
-        id : newTicketChangesID.toString(),
-        tid : tixArray[editTicketIndex].id
-      });
-    }
-    else{
-      set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Title",
-        oldvalue: `${ticketTitleOG}`,
-        newvalue : `${ticketTitle}`,
-        datechanged : datetime,
-        id : newTicketChangesID.toString(),
-        tid : tixArray[editTicketIndex].id
-      });
-    }
-  }
-  else if(ticketTitle != "" && ticketDesc == "" && ticketDate != ""){
-    console.log("1 0 1");
-    set(ref(dbRef, 'tickets/T' + tixArray[editTicketIndex].id), {
-      date: ticketDate,
-      desc: ticketDescOG,
-      dev : ticketDevOG,
-      priority : ticketPriority,
-      status : ticketStatus,
-      title : ticketTitle,
-      id : ticketID,
-      pid : ticketPID,
-      submitter : ticketSubmitter
-    });
-    if(ticketPriority != ticketPriorityOG && ticketStatus == ticketStatusOG){
-      set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Priority, Title, Date",
-        oldvalue: `${ticketPriorityOG}, ${ticketTitleOG}, ${ticketDateOG}`,
-        newvalue : `${ticketPriority}, ${ticketTitle}, ${ticketDate}`,
-        datechanged : datetime,
-        id : newTicketChangesID.toString(),
-        tid : tixArray[editTicketIndex].id
-      });
-    }
-    else if(ticketPriority == ticketPriorityOG && ticketStatus != ticketStatusOG){
-      set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Status, Title, Date",
-        oldvalue: `${ticketStatusOG}, ${ticketTitleOG}, ${ticketDateOG}`,
-        newvalue : `${ticketStatus}, ${ticketTitle}, ${ticketDate}`,
-        datechanged : datetime,
-        id : newTicketChangesID.toString(),
-        tid : tixArray[editTicketIndex].id
-      });
-    }
-    else if(ticketPriority != ticketPriorityOG && ticketStatus != ticketStatusOG){
-      set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Priority, Status, Title, Date",
-        oldvalue: `${ticketPriorityOG}, ${ticketStatusOG}, ${ticketTitleOG}, ${ticketDateOG}`,
-        newvalue : `${ticketPriority}, ${ticketStatus}, ${ticketTitle}, ${ticketDate}`,
-        datechanged : datetime,
-        id : newTicketChangesID.toString(),
-        tid : tixArray[editTicketIndex].id
-      });
-    }
-    else{
-      set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Title, Date",
-        oldvalue: `${ticketTitleOG}, ${ticketDateOG}`,
-        newvalue : `${ticketTitle}, ${ticketDate}`,
-        datechanged : datetime,
-        id : newTicketChangesID.toString(),
-        tid : tixArray[editTicketIndex].id
-      });
-    }
-  }
-  else if(ticketTitle != "" && ticketDesc != "" && ticketDate == ""){
-    console.log("1 1 0");
-    set(ref(dbRef, 'tickets/T' + tixArray[editTicketIndex].id), {
-      date: ticketDateOG,
-      desc: ticketDesc,
-      dev : ticketDevOG,
-      priority : ticketPriority,
-      status : ticketStatus,
-      title : ticketTitle,
-      id : ticketID,
-      pid : ticketPID,
-      submitter : ticketSubmitter
-    });
-    if(ticketPriority != ticketPriorityOG && ticketStatus == ticketStatusOG){
-      set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Priority, Title, Description",
-        oldvalue: `${ticketPriorityOG}, ${ticketTitleOG}, ${ticketDescOG}`,
-        newvalue : `${ticketPriority}, ${ticketTitle}, ${ticketDesc}`,
-        datechanged : datetime,
-        id : newTicketChangesID.toString(),
-        tid : tixArray[editTicketIndex].id
-      });
-    }
-    else if(ticketPriority == ticketPriorityOG && ticketStatus != ticketStatusOG){
-      set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Status, Title, Description",
-        oldvalue: `${ticketStatusOG}, ${ticketTitleOG}, ${ticketDescOG}`,
-        newvalue : `${ticketStatus}, ${ticketTitle}, ${ticketDesc}`,
-        datechanged : datetime,
-        id : newTicketChangesID.toString(),
-        tid : tixArray[editTicketIndex].id
-      });
-    }
-    else if(ticketPriority != ticketPriorityOG && ticketStatus != ticketStatusOG){
-      set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Priority, Status, Title, Description",
-        oldvalue: `${ticketPriorityOG}, ${ticketStatusOG}, ${ticketTitleOG}, ${ticketDescOG}`,
-        newvalue : `${ticketPriority}, ${ticketStatus}, ${ticketTitle}, ${ticketDesc}`,
-        datechanged : datetime,
-        id : newTicketChangesID.toString(),
-        tid : tixArray[editTicketIndex].id
-      });
-    }
-    else{
-      set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Title, Description",
-        oldvalue: `${ticketTitleOG}, ${ticketDescOG}`,
-        newvalue : `${ticketTitle}, ${ticketDesc}`,
-        datechanged : datetime,
-        id : newTicketChangesID.toString(),
-        tid : tixArray[editTicketIndex].id
-      });
-    }
-  }
-  else{
-    console.log("1 1 1");
-    set(ref(dbRef, 'tickets/T' + tixArray[editTicketIndex].id), {
-      date: ticketDate,
-      desc: ticketDesc,
-      dev : ticketDevOG,
-      priority : ticketPriority,
-      status : ticketStatus,
-      title : ticketTitle,
-      id : ticketID,
-      pid : ticketPID,
-      submitter : ticketSubmitter
-    });
-    if(ticketPriority != ticketPriorityOG && ticketStatus == ticketStatusOG){
-      set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Priority, Title, Description, Date",
-        oldvalue: `${ticketPriorityOG}, ${ticketTitleOG}, ${ticketDescOG}, ${ticketDateOG}`,
-        newvalue : `${ticketPriority}, ${ticketTitle}, ${ticketDesc}, ${ticketDate}`,
-        datechanged : datetime,
-        id : newTicketChangesID.toString(),
-        tid : tixArray[editTicketIndex].id
-      });
-    }
-    else if(ticketPriority == ticketPriorityOG && ticketStatus != ticketStatusOG){
-      set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Status, Title, Description, Date",
-        oldvalue: `${ticketStatusOG}, ${ticketTitleOG}, ${ticketDescOG}, ${ticketDateOG}`,
-        newvalue : `${ticketStatus}, ${ticketTitle}, ${ticketDesc}, ${ticketDate}`,
-        datechanged : datetime,
-        id : newTicketChangesID.toString(),
-        tid : tixArray[editTicketIndex].id
-      });
-    }
-    else if(ticketPriority != ticketPriorityOG && ticketStatus != ticketStatusOG){
-      set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Priority, Status, Title, Description, Date",
-        oldvalue: `${ticketPriorityOG}, ${ticketStatusOG}, ${ticketTitleOG}, ${ticketDescOG}, ${ticketDateOG}`,
-        newvalue : `${ticketPriority}, ${ticketStatus}, ${ticketTitle}, ${ticketDesc}, ${ticketDate}`,
-        datechanged : datetime,
-        id : newTicketChangesID.toString(),
-        tid : tixArray[editTicketIndex].id
-      });
-    }
-    else{
-      set(ref(dbRef, 'ticketchanges/TCH' + newTicketChangesID.toString()), {
-        property: "Title, Description, Date",
-        oldvalue: `${ticketTitleOG}, ${ticketDescOG}, ${ticketDateOG}`,
-        newvalue : `${ticketTitle}, ${ticketDesc}, ${ticketDate}`,
         datechanged : datetime,
         id : newTicketChangesID.toString(),
         tid : tixArray[editTicketIndex].id
@@ -756,6 +542,7 @@ function ticketFilesSetup(ticketIndex, userID){
       created : datetime,
       tid : tixArray[ticketIndex].id
     });
+    location.reload();
     };
 }
 

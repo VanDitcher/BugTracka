@@ -10202,7 +10202,7 @@ a:focus {
 .bg-gradient-primary {
   background-color: #6a11cb;
   background-image: linear-gradient(180deg, #6a11cb 10%, #8322ED 100%);
-  background-size: cover;
+  background-size: contain;
 }
 
 .bg-gradient-secondary {

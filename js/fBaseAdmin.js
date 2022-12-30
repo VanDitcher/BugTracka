@@ -61,7 +61,7 @@ async function usersListStartUp(userRole){
         <td><p style="margin: 0; color: #35393F">${userArray[i].team}</p></td>
         <td class="text-center">${printRole}</td>
         <td class="text-end">
-        <a href="#" data-toggle="modal" data-target="#userEditModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="userEditBtnU${i}" style="font-size: 12px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-pen" style="color: #858585;"></i></button></a>
+        <a href="#" data-toggle="modal" data-target="#userEditModal" style="margin-left: 2px; margin-right: 2px; text-decoration: none;"><button id="userEditBtnU${i}" style="padding-left: 2px; padding-right: 2px; padding-top: 0px; padding-bottom: 0px; font-size: 15px; background-color: #00000000; border: solid; border-color: #858585; color:#858585; border-radius:3px; text-align:center; border-width: 1px;"><i class="fas fa-pen" style="padding-top: 2px; padding-bottom: 2px; color: #858585;"></i></button></a>
         </td>
       </tr>`
     }
