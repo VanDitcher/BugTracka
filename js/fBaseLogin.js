@@ -46,7 +46,7 @@ function demoButtonsSetup(){
     signInWithEmailAndPassword(auth, enteredEmail, enteredPassword).then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
-      location.href= '/maindash.html';
+      location.href= 'maindash.html';
       // ...
     })
     .catch((error) => {
@@ -59,7 +59,7 @@ function demoButtonsSetup(){
     signInWithEmailAndPassword(auth, enteredEmail, enteredPassword).then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
-      location.href= '/maindash.html';
+      location.href= 'maindash.html';
       // ...
     })
     .catch((error) => {
@@ -72,7 +72,7 @@ function demoButtonsSetup(){
     signInWithEmailAndPassword(auth, enteredEmail, enteredPassword).then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
-      location.href= '/maindash.html';
+      location.href= 'maindash.html';
       // ...
     })
     .catch((error) => {
@@ -85,7 +85,7 @@ function demoButtonsSetup(){
     signInWithEmailAndPassword(auth, enteredEmail, enteredPassword).then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
-      location.href= '/maindash.html';
+      location.href= 'maindash.html';
       // ...
     })
     .catch((error) => {
