@@ -3,7 +3,7 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase
 import { getDatabase, ref, set, child, update, remove, onValue, get } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
 import { DateTime } from "https://moment.github.io/luxon/es6/luxon.min.js";
 import 'https://code.jquery.com/jquery-3.6.1.min.js';
-import '/node_modules/datatables.net/js/jquery.dataTables.js';
+import '/BugTracka/node_modules/datatables.net/js/jquery.dataTables.js';
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
 
 const firebaseConfig = {
