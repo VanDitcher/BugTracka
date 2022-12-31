@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebas
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js";
 import { getDatabase, ref, set, child, update, remove, onValue, get } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
 import 'https://code.jquery.com/jquery-3.6.1.min.js';
-import 'static/node_modules/datatables.net/js/jquery.dataTables.js';
+import 'BugTracka/node_modules/datatables.net/js/jquery.dataTables.js';
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
 
 
