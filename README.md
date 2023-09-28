@@ -1,6 +1,6 @@
 # BugTracka
 
-Note: Firebase database rules for writing have been set to false for security reasons.
+## **Note: Firebase database rules for writing have been set to false for security reasons.**
 
 Bug Tracka is a web app designed to manage project tickets and get them where they are needed.
 
