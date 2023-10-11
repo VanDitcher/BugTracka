@@ -1,41 +1,49 @@
-# BugTracka
+# Bug Tracka
 
-## **Note: Firebase database rules for writing have been set to false for security reasons. For live demo, please contact me at mvanditc@gmail.com**
+*Tired of disorganization?* I know, we all are...
 
-Bug Tracka is a web app designed to manage project tickets and get them where they are needed.
+## Introducing *Bug Tracka*, your one stop application for all project management needs.
 
-Login Page:
-![image](https://user-images.githubusercontent.com/67857928/223749138-750df9f9-b437-4c2d-bb22-e4919ce58e59.png)
+Bug Tracka is a web application dedicated to providing users a compelling and efficient project managment experience.
+<br>
+<br>
+<br>
 
-[[IMPORTANT]]
-Since this project was intended to be a demonstration, the login page has demo login buttons 
-that allow you to simulate what it would be like as the role you selected.
+### State of the Art Dashboard:
+![image](/assetsForMD/Demo-Admin-Home.png)
+Bug Tracka's dashboard is designed to get you *in the zone* by showing you everything you need in one consolidated space.
+<br>
+<br>
+<br>
 
+### Track Your Projects!:
+![image](/assetsForMD/Project-Tracking.png)
+Projects can be huge, but with Bug Tracka, size doesn't matter! Any project you want can be managed and kept track of using Bug Tracka.
+<br>
+<br>
+<br>
 
-Main Dashboard:
-![image](https://user-images.githubusercontent.com/67857928/223750333-235a10c6-afd2-46dd-847e-81be01980261.png)
-![image](https://user-images.githubusercontent.com/67857928/223750489-63fe3126-12fd-48c2-8914-2daf4b7f3e96.png)
+### Submit Tickets:
+![image](/assetsForMD/Ticket-Submit.png)
+Sometimes life doesn't go as planned - at Bug Tracka we made sure to plan ahead! Bug Tracka offers users a ticket submission system, so your team can get on track and overcome obstacles!
+<br>
+<br>
+<br>
 
-Project Management:
-![image](https://user-images.githubusercontent.com/67857928/223750809-b170739e-856d-4418-9702-a8220451dcf4.png)
+### Track Ticket Progress:
+![image](/assetsForMD/Ticket-Tracking.png)
+Ever wonder how long it's gonna take your developer to finish his job? Bug Tracka aims to increase transparency, so you know exactly what is going on with that ticket of yours.
+<br>
+<br>
+<br>
 
-Project Details View:
-![projectDetails](https://github.com/mvanditc/BugTracka/assets/67857928/bd9067ca-b629-45c2-a1f4-527d3eb0c053)
+### Manage Your Users:
+![image](/assetsForMD/Admin-Dashboard.png)
+New employees? Maybe new customers? No worries, we have you covered. Users who have the "Admin" role can access a special admin dashboard and change details about a user.
+<br>
+<br>
+<br>
 
-Project Editing:
-![editProjectModal](https://github.com/mvanditc/BugTracka/assets/67857928/6b020ea5-1728-4f4f-ac63-bd4b008200da)
-
-Ticket Management:
-![image](https://user-images.githubusercontent.com/67857928/223750923-bd1d69cc-89e8-462b-87fb-d860381ca039.png)
-
-Ticket Details:
-![ticketDetails](https://github.com/mvanditc/BugTracka/assets/67857928/25640fd2-0955-43c2-8511-6227f3735aa2)
-
-Ticket Editing:
-![editTicketDetails](https://github.com/mvanditc/BugTracka/assets/67857928/d12d4059-9de5-400b-a129-1ad4c75b11f5)
-
-Admin Dashboard:
-![image](https://user-images.githubusercontent.com/67857928/223751028-2d09b501-6ec1-49f9-9afa-941010c51b14.png)
-
-User Details Editing:
-![editUserAsAdmin](https://github.com/mvanditc/BugTracka/assets/67857928/9e44bf93-180e-4f3c-b66b-4fd62c14dfd4)
+### Interested in Role Based Access Control?
+![image](/assetsForMD/Login-Page.png)
+Since this website is only a demonstration, a bunch of buttons have been added onto the Login page, allowing you to simulate what it's like to be in the shoes of various roles.
