@@ -3,14 +3,7 @@ import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/fir
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDMwzug_6RzdZ3UVvEjtbDGedpgEHFeN4A",
-  authDomain: "bug-tracka.firebaseapp.com",
-  databaseURL: "https://bug-tracka-default-rtdb.firebaseio.com",
-  projectId: "bug-tracka",
-  storageBucket: "bug-tracka.appspot.com",
-  messagingSenderId: "64400813098",
-  appId: "1:64400813098:web:2f7bb7f5799ec3aaa82753",
-  measurementId: "G-JZB8HD7HPG"
+  // nice try
 };
 
 // Initialize Firebase
